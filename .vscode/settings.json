@@ -1,0 +1,14 @@
+{
+  // default project settings
+  "editor.defaultFormatter": "Shopify.ruby-lsp",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+
+  // use prettier for .json
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
