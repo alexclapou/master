@@ -4,8 +4,8 @@ ruby "3.3.0"
 
 gem "haml"
 gem "pg"
-gem "rubocop"
-gem "ruby-lsp"
+gem "rubocop", "~> 1.60.2"
+gem "ruby-lsp", "~> 0.14.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -55,6 +55,10 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: "main"
+  end
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -71,5 +75,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  gem "faker"
   gem "selenium-webdriver"
+  gem "shoulda-matchers"
 end
