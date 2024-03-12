@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.3.0"
 
+gem "colorize"
 gem "haml"
 gem "pg"
 gem "rubocop", "~> 1.60.2"

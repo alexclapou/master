@@ -8,11 +8,11 @@ RSpec.describe Tag, type: :model do
   end
 
   describe "creation" do
-    it "should save the name lowercase" do
-      name = Faker::ProgrammingLanguage.name.upcase
+    it "should correctly format the name" do
+      name = Faker::Cannabis.health_benefit.titleize
       tag = FactoryBot.create(:tag, name:)
 
-      expect(tag.name).to eq(name.downcase)
+      expect(tag.name).to eq(name.parameterize)
     end
   end
 end
