@@ -2553,7 +2553,7 @@ Metrics/AbcSize:
   Reference:
     - http://c2.com/cgi/wiki?AbcMetric
     - https://en.wikipedia.org/wiki/ABC_Software_Metric
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.27'
   VersionChanged: '1.5'
   # The ABC size is a calculated magnitude, so this number can be an Integer or
@@ -3371,7 +3371,7 @@ Style/ClassAndModuleChildren:
   #   end
   #
   # The compact style is only forced, for classes or modules with one child.
-  EnforcedStyle: nested
+  EnforcedStyle: compact
   SupportedStyles:
     - nested
     - compact
