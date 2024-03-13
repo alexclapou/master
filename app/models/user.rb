@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  devise :omniauthable, omniauth_providers: %i[google_oauth2]
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[google_oauth2]
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
@@ -10,5 +12,11 @@ class User < ApplicationRecord
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
     end
+  end
+
+  def password_required?
+    false if provider.present? && uid.present?
+
+    true
   end
 end
