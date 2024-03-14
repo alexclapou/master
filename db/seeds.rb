@@ -1,3 +1,11 @@
+puts "creating dummy users...".colorize(:light_green)
+q = User.create(email: "a@a.com", password: "parola")
+
+puts "creating dummy posts...".colorize(:light_green)
+Post.create(user_id: q.id)
+Post.create(user_id: q.id)
+Post.create(user_id: q.id)
+Post.create(user_id: q.id)
 puts "creating tags...".colorize(:light_green)
 tags = %w[cooking programming drawing poetry photography football painting sport algorithms social-media gaming movies
           software-engineering]
