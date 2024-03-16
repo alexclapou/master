@@ -28,6 +28,9 @@ module.exports = {
       maxWidth: {
         pagemax: "1200px",
       },
+      width: {
+        220: "220px",
+      },
       padding: {
         "2-5": "10px",
         "4-5": "18px",

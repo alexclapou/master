@@ -1,5 +1,6 @@
-- if current_user
-  = link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete}
+= render partial: "shared/navigation/user_dropdown"
+%div
+  '------------------------------------------------------------------------------------------------------------------------'
 %span.text-secondary
   asdaad
 %div.text-primary
