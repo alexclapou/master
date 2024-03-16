@@ -2,7 +2,7 @@ class Tag < ApplicationRecord
   normalizes :name, with: ->(name) { name.parameterize }
   validates :name, presence: true, uniqueness: true
 
-  has_and_belongs_to_many :posts
+  has_and_belongs_to_many :stories
   def pretty_name
     name.titleize
   end

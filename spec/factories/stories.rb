@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :post do
+  factory :story do
     title { "MyString" }
     content { "MyText" }
     user { nil }
