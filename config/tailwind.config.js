@@ -28,6 +28,11 @@ module.exports = {
       maxWidth: {
         pagemax: "1200px",
       },
+      spacing: {
+        19: "64px",
+        m184: "-184px",
+        m200: "-164px",
+      },
       width: {
         220: "220px",
       },

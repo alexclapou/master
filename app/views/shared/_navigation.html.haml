@@ -28,9 +28,12 @@
             .bg-secondary.py-2-5.px-4-5.rounded.m-px.text-white.text-sm.hover:bg-primary
               Create Story
         - if user_signed_in?
-          .sm:ml-5
-            = link_to root_path do
-              .bg-behindfade.rounded-full.w-9.h-9.items-center.justify-center.flex.text-sm.font-normal
-                - initials = current_user.name_initials
-                %span
-                  = initials
+          .static
+            .sm:ml-5
+              = link_to root_path do
+                .bg-behindfade.rounded-full.w-9.h-9.items-center.justify-center.flex.text-sm.font-normal
+                  - initials = current_user.name_initials
+                  %span
+                    = initials
+            .absolute.top-19.ml-m184.sm:ml-m200
+              = render partial: "shared/navigation/user_dropdown"
