@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    false if provider.present? && uid.present?
+    return false if provider.present? && uid.present?
 
     true
   end
