@@ -5,12 +5,15 @@ export default class extends Controller {
 
   toggle_dropdown(event) {
     const button_clicked = this.buttonTarget.contains(event.target)
+
     if (button_clicked) this.dropdownTarget.classList.toggle("hidden")
   }
 
   close_dropdown(event) {
     const button_clicked = this.buttonTarget.contains(event.target)
-    if (button_clicked && event.type == "click") return
+    const dropdown_clicked = this.dropdownTarget.contains(event.target)
+
+    if (dropdown_clicked || (button_clicked && event.type == "click")) return
 
     this.dropdownTarget.classList.add("hidden")
     this.buttonTarget.blur()

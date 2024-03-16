@@ -1,0 +1,7 @@
+-# - if flash.present?
+  %div.max-w-xs.mx-auto{"data-controller" => "flash"}
+    - flash.each do |type, msg|
+      %div
+        .px-4.py-3.mb-4.text-xs.rounded.bg-secondary.text-white{"data-flash-target": "message"}
+          %span.font-medium
+            = msg

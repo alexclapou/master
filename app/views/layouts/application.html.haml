@@ -14,6 +14,7 @@
   %body
     = render partial: 'shared/navigation'
     %main.max-w-pagemax.mx-auto.pt-8
+      = render 'shared/flash_message'
       = yield
     %script
       feather.replace()
