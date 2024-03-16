@@ -1,24 +1,25 @@
 %nav.h-19.px-4.border-b.border-gray-300
-  .max-w-pagemax.mx-auto.w-full.py-3.h-full
+  .max-w-pagemax.mx-auto.w-full.py-3.h-full.font-light
     .h-full.flex.items-center.justify-between
       = link_to root_path do
-        .flex.items-center.gap-2
+        .flex.items-end.gap-2
           .w-10.flex.items-center
             = image_tag 'logo.png'
-          .font-medium.text-xl
+          .font-semibold.text-md.text-primary
             Pe Caiet
-      .flex.items-center.text-base
+      .flex.items-center.text-base.text-fade
         .mr-7
-          %i.h-5{"data-feather" => "search"}
+          = link_to root_path do 
+            %i.w-full.h-full.p-1.rounded-full.hover:bg-behindfade{"data-feather" => "search"}
         - if user_signed_in?
           .mr-7
             %i.h-5{"data-feather" => "bell"}
         - else
-          .mr-7
+          .mr-7.hover:text-primary
             = link_to 'Sign In', new_user_session_path
-          .mr-0.sm:mr-7
+          .mr-2.sm:mr-7.hover:text-primary
             = link_to 'Sign Up', new_user_registration_path
         .hidden.sm:block
           = link_to root_path do
-            %span.bg-blue-400.py-3.px-45.rounded.m-px.border-blue-400.text-white.text-sm
+            .bg-secondary.py-25.px-45.rounded.m-px.text-white.text-sm.hover:bg-primary
               Create Story

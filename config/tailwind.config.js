@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
+console.log("asd")
 
 module.exports = {
   content: [
@@ -28,7 +29,14 @@ module.exports = {
         pagemax: "1246px",
       },
       padding: {
+        25: "10px",
         45: "18px",
+      },
+      colors: {
+        fade: "var(--color-text-fade)",
+        behindfade: "var(--color-text-behind-fade)",
+        primary: "var(--color-text-primary)",
+        secondary: "var(--color-text-secondary)",
       },
     },
   },
