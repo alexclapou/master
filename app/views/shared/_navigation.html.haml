@@ -1,10 +1,24 @@
-%nav.px-4.border-b.border-gray-300
-  .max-w-7xl.mx-auto.h-16.w-full.py-3
+%nav.h-19.px-4.border-b.border-gray-300
+  .max-w-pagemax.mx-auto.w-full.py-3.h-full
     .h-full.flex.items-center.justify-between
-      .branding.flex.items-center.gap-2
-        .logo.w-10.flex.items-center
-          = image_tag 'logo.png'
-        .brand.font-bold.text-xl
-          Pe Caiet
-      .actions
-        Actions
+      = link_to root_path do
+        .flex.items-center.gap-2
+          .w-10.flex.items-center
+            = image_tag 'logo.png'
+          .font-medium.text-xl
+            Pe Caiet
+      .flex.items-center.text-base
+        .mr-7
+          %i.h-5{"data-feather" => "search"}
+        - if user_signed_in?
+          .mr-7
+            %i.h-5{"data-feather" => "bell"}
+        - else
+          .mr-7
+            = link_to 'Sign In', new_user_session_path
+          .mr-0.sm:mr-7
+            = link_to 'Sign Up', new_user_registration_path
+        .hidden.sm:block
+          = link_to root_path do
+            %span.bg-blue-400.py-3.px-45.rounded.m-px.border-blue-400.text-white.text-sm
+              Create Story
