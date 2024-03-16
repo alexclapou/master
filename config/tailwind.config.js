@@ -26,11 +26,11 @@ module.exports = {
         19: "73px",
       },
       maxWidth: {
-        pagemax: "1246px",
+        pagemax: "1200px",
       },
       padding: {
-        25: "10px",
-        45: "18px",
+        "2-5": "10px",
+        "4-5": "18px",
       },
       colors: {
         fade: "var(--color-text-fade)",

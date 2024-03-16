@@ -1,25 +1,36 @@
-%nav.h-19.px-4.border-b.border-gray-300
+%nav.h-19.px-4.border-b-2.border-behindfade
   .max-w-pagemax.mx-auto.w-full.py-3.h-full.font-light
     .h-full.flex.items-center.justify-between
+      -# logo
       = link_to root_path do
         .flex.items-end.gap-2
           .w-10.flex.items-center
             = image_tag 'logo.png'
           .font-semibold.text-md.text-primary
             Pe Caiet
+
+      -# actions
       .flex.items-center.text-base.text-fade
-        .mr-7
+        .mr-5
           = link_to root_path do 
-            %i.w-full.h-full.p-1.rounded-full.hover:bg-behindfade{"data-feather" => "search"}
+            %i.w-9.h-9.p-2.rounded-full.hover:bg-behindfade{"data-feather" => "search"}
         - if user_signed_in?
-          .mr-7
-            %i.h-5{"data-feather" => "bell"}
+          .mr-5
+            = link_to root_path do 
+              %i.w-9.h-9.p-2.rounded-full.hover:bg-behindfade{"data-feather" => "bell"}
         - else
-          .mr-7.hover:text-primary
+          .mr-5.hover:text-primary
             = link_to 'Sign In', new_user_session_path
-          .mr-2.sm:mr-7.hover:text-primary
+          .mr-2.sm:mr-5.hover:text-primary
             = link_to 'Sign Up', new_user_registration_path
         .hidden.sm:block
           = link_to root_path do
-            .bg-secondary.py-25.px-45.rounded.m-px.text-white.text-sm.hover:bg-primary
+            .bg-secondary.py-2-5.px-4-5.rounded.m-px.text-white.text-sm.hover:bg-primary
               Create Story
+        - if user_signed_in?
+          .ml-5
+            = link_to root_path do
+              .bg-behindfade.rounded-full.w-9.h-9.items-center.justify-center.flex.text-sm.font-normal
+                - initials = current_user.name_initials
+                %span
+                  = initials
