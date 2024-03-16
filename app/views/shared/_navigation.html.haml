@@ -12,12 +12,14 @@
       -# actions
       .flex.items-center.text-base.text-fade
         .mr-5
-          = link_to root_path do 
-            %i.w-9.h-9.p-2.rounded-full.hover:bg-behindfade{"data-feather" => "search"}
+          .rounded-full.overflow-hidden
+            = link_to root_path do 
+              %i.w-9.h-9.p-2.hover:bg-behindfade{"data-feather" => "search"}
         - if user_signed_in?
           .mr-5
-            = link_to root_path do 
-              %i.w-9.h-9.p-2.rounded-full.hover:bg-behindfade{"data-feather" => "bell"}
+            .rounded-full.overflow-hidden
+              = link_to root_path do 
+                %i.w-9.h-9.p-2.hover:bg-behindfade{"data-feather" => "bell"}
         - else
           .mr-5.hover:text-primary
             = link_to 'Sign In', new_user_session_path
@@ -28,12 +30,11 @@
             .bg-secondary.py-2-5.px-4-5.rounded.m-px.text-white.text-sm.hover:bg-primary
               Create Story
         - if user_signed_in?
-          .static
-            .sm:ml-5
-              = link_to root_path do
-                .bg-behindfade.rounded-full.w-9.h-9.items-center.justify-center.flex.text-sm.font-normal
-                  - initials = current_user.name_initials
-                  %span
-                    = initials
+          .static{ "data-controller": "account" }
+            .sm:ml-5.select-none
+              .bg-behindfade.rounded-full.w-9.h-9.items-center.justify-center.flex.text-sm.font-normal.cursor-pointer{"data-account-target": "button", "data-action": "click@window->account#close_dropdown keydown.esc->account#close_dropdown click->account#toggle_dropdown", "tabindex": "0"}
+                - initials = current_user.name_initials
+                %span
+                  = initials
             .absolute.top-19.ml-m184.sm:ml-m200
               = render partial: "shared/navigation/user_dropdown"
