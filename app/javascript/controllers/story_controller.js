@@ -3,6 +3,29 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["title", "title_length", "content"];
 
+  connect() {
+    document.addEventListener("mouseup", () => {
+      this.handleMouseUp();
+    });
+  }
+
+  handleMouseUp() {
+    var selectedText = this.getSelectedText();
+
+    if (selectedText.length > 0) {
+      console.log(selectedText);
+    }
+  }
+
+  getSelectedText() {
+    if (window.getSelection) {
+      return window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+      return document.selection.createRange().text;
+    }
+    return "";
+  }
+
   check_limit() {
     // set rows to 1 => we calculate them after
     this.titleTarget.rows = 1;

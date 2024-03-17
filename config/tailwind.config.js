@@ -1,5 +1,4 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
-console.log("asd")
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
@@ -58,4 +57,4 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
   ],
-}
+};
