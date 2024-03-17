@@ -1,0 +1,9 @@
+- classes = name == "title" ? "text-4xl" : "text-xl mt-4 font-light"
+= form.text_area name, { class: "focus-visible:ring-0 appearance-none resize-none w-full border-none #{classes}", "data-story-target": name, placeholder: placeholder, "data-action": "story#check_limit", maxlength: maxLength, rows: 1}
+
+- if maxLength
+  %span.text-xs.p-0.m-0.italic.text-fade
+    %span{ "data-story-target": "title_length" }
+      0
+    %span
+      \/ 100 charaters

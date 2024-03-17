@@ -22,6 +22,9 @@ module.exports = {
           ...defaultTheme.fontFamily.sans,
         ],
       },
+      fontSize: {
+        "4-5xl": "40px",
+      },
       height: {
         19: "73px",
       },

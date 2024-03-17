@@ -1,25 +1,39 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["title", "title_length"]
+  static targets = ["title", "title_length", "content"];
 
   check_limit() {
-    this.titleTarget.rows = 1
-    const length = this.titleTarget.value.length
-    let increase_height =
-      this.titleTarget.clientHeight < this.titleTarget.scrollHeight
+    // set rows to 1 => we calculate them after
+    this.titleTarget.rows = 1;
+    this.contentTarget.rows = 1;
 
-    while (increase_height) {
-      this.titleTarget.rows++
-      increase_height =
-        this.titleTarget.clientHeight < this.titleTarget.scrollHeight
+    // resize it as much as we need
+    while (this.should_resize(this.titleTarget) || this.should_resize(this.contentTarget)) {
+      this.resize(this.titleTarget);
+      this.resize(this.contentTarget);
     }
 
-    this.titleTarget.rows = Math.max(1, this.titleTarget.rows - 1)
-    increase_height =
-      this.titleTarget.clientHeight < this.titleTarget.scrollHeight
-    if (increase_height) this.titleTarget.rows++
+    // there is a bug, where a row is added even if we are not at the end of line (1/2 charcters left to fill the row)
+    // so in this case, just remove a row (the possible new row added - bug) and resize if needed after
+    this.titleTarget.rows = Math.max(1, this.titleTarget.rows - 1);
+    this.contentTarget.rows = Math.max(1, this.contentTarget.rows - 1);
 
-    this.title_lengthTarget.innerHTML = length
+    if (this.should_resize(this.titleTarget) || this.should_resize(this.contentTarget)) {
+      this.resize(this.titleTarget);
+      this.resize(this.contentTarget);
+    }
+
+    this.title_lengthTarget.innerHTML = this.titleTarget.value.length;
+  }
+
+  should_resize(textarea) {
+    return textarea.clientHeight < textarea.scrollHeight;
+  }
+
+  resize(textarea) {
+    if (this.should_resize(textarea)) {
+      textarea.rows++;
+    }
   }
 }

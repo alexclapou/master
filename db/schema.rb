@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_000446) do
 
   create_table "stories", force: :cascade do |t|
     t.string "title"
-    t.string "sub_title"
     t.text "content"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
