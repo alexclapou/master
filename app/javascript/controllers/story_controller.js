@@ -4,9 +4,13 @@ export default class extends Controller {
   static targets = ["title", "title_length"];
 
   connect() {
-    var trixToolbar = document?.querySelector("trix-toolbar");
-    if (trixToolbar) trixToolbar.remove();
-    document.addEventListener("selectionchange", () => {
+    // document.addEventListener("selectionchange", () => {
+    //   const editor_clicked = document.activeElement.id == "story_content";
+    //   const popup = document.getElementById("text-options");
+    //   if (editor_clicked || popup) this.handleSelectionChange();
+    // });
+
+    document.addEventListener("mouseup", () => {
       const editor_clicked = document.activeElement.id == "story_content";
       const popup = document.getElementById("text-options");
       if (editor_clicked || popup) this.handleSelectionChange();
@@ -15,6 +19,9 @@ export default class extends Controller {
 
   handleSelectionChange() {
     const selectedText = this.getSelectedText();
+    const selection = window.getSelection();
+
+    console.log(selection);
     if (document.activeElement.id == "text-options") {
       return;
     }

@@ -29,10 +29,11 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+trix-toolbar { display: none; }
 
 #story_content{
   strong {
-    font-weight: 700;
+    font-weight: 800;
   }
   pre{
     background-color: #eee !important;
