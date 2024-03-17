@@ -1,27 +1,46 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["title", "title_length", "content"];
+  static targets = ["title", "title_length"];
+
+  connect() {
+    document.addEventListener("mouseup", () => {
+      this.handleMouseUp();
+    });
+  }
+
+  handleMouseUp() {
+    var selectedText = this.getSelectedText();
+
+    if (selectedText.length > 0) {
+      console.log(selectedText);
+    }
+  }
+
+  getSelectedText() {
+    if (window.getSelection) {
+      return window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+      return document.selection.createRange().text;
+    }
+    return "";
+  }
 
   check_limit() {
     // set rows to 1 => we calculate them after
     this.titleTarget.rows = 1;
-    this.contentTarget.rows = 1;
 
     // resize it as much as we need
-    while (this.should_resize(this.titleTarget) || this.should_resize(this.contentTarget)) {
+    while (this.should_resize(this.titleTarget)) {
       this.resize(this.titleTarget);
-      this.resize(this.contentTarget);
     }
 
     // there is a bug, where a row is added even if we are not at the end of line (1/2 charcters left to fill the row)
     // so in this case, just remove a row (the possible new row added - bug) and resize if needed after
     this.titleTarget.rows = Math.max(1, this.titleTarget.rows - 1);
-    this.contentTarget.rows = Math.max(1, this.contentTarget.rows - 1);
 
-    if (this.should_resize(this.titleTarget) || this.should_resize(this.contentTarget)) {
+    if (this.should_resize(this.titleTarget)) {
       this.resize(this.titleTarget);
-      this.resize(this.contentTarget);
     }
 
     this.title_lengthTarget.innerHTML = this.titleTarget.value.length;
