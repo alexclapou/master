@@ -1,5 +1,5 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
-console.log("asd")
+const defaultTheme = require("tailwindcss/defaultTheme");
+console.log("asd");
 
 module.exports = {
   content: [
@@ -21,6 +21,7 @@ module.exports = {
           "sans-serif",
           ...defaultTheme.fontFamily.sans,
         ],
+        source: ["Source\\ Serif\\ 4", "sans-serif"],
       },
       fontSize: {
         "4-5xl": "40px",
@@ -58,4 +59,4 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
   ],
-}
+};

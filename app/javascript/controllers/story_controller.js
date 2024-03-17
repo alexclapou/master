@@ -4,16 +4,63 @@ export default class extends Controller {
   static targets = ["title", "title_length"];
 
   connect() {
-    document.addEventListener("mouseup", () => {
-      this.handleMouseUp();
+    var trixToolbar = document?.querySelector("trix-toolbar");
+    if (trixToolbar) trixToolbar.remove();
+    document.addEventListener("selectionchange", () => {
+      const editor_clicked = document.activeElement.id == "story_content";
+      const popup = document.getElementById("text-options");
+      if (editor_clicked || popup) this.handleSelectionChange();
     });
   }
 
-  handleMouseUp() {
-    var selectedText = this.getSelectedText();
+  handleSelectionChange() {
+    const selectedText = this.getSelectedText();
+    if (document.activeElement.id == "text-options") {
+      return;
+    }
 
-    if (selectedText.length > 0) {
-      console.log(selectedText);
+    if (selectedText.trim().length > 0) {
+      this.showTextOptions();
+    } else {
+      this.hideTextOptions();
+    }
+  }
+
+  showTextOptions() {
+    this.hideTextOptions();
+
+    this.selectionDiv = document.createElement("div");
+
+    this.selectionDiv.setAttribute("id", "text-options");
+    this.selectionDiv.setAttribute("tabindex", "0");
+    this.selectionDiv.style.position = "absolute";
+    this.selectionDiv.style.backgroundColor = "rgba(255, 255, 255)";
+    this.selectionDiv.style.border = "1px solid black";
+    this.selectionDiv.style.padding = "4px";
+    this.selectionDiv.textContent = "Hello";
+    this.selectionDiv.style.userSelect = "none";
+
+    // Get the selection range
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+
+      // Calculate the middle position of the selected text
+      const middleX = rect.left + rect.width / 2;
+
+      // Set the position of the div to be in the middle of the selected text
+      this.selectionDiv.style.top = rect.top - 40 + "px";
+      this.selectionDiv.style.left = middleX + "px";
+
+      document.body.appendChild(this.selectionDiv);
+    }
+  }
+
+  hideTextOptions() {
+    if (this.selectionDiv && this.selectionDiv.parentNode) {
+      this.selectionDiv.parentNode.removeChild(this.selectionDiv);
+      this.selectionDiv = null;
     }
   }
 
