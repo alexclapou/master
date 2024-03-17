@@ -1,3 +1,7 @@
 class StoriesController < ApplicationController
-  def new; end
+  before_action :authenticate_user!
+
+  def new
+    @story = Story.new
+  end
 end

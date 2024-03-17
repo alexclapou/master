@@ -27,6 +27,7 @@ module.exports = {
       },
       maxWidth: {
         pagemax: "1200px",
+        contentmax: "680px",
       },
       spacing: {
         19: "64px",

@@ -1,2 +1,5 @@
 = provide(:title, 'New Story')
-Hello Stories
+.w-full.max-w-contentmax.mx-auto
+  .mx-6.md:mx-0
+    = form_with model: @story do |form|
+      = render partial: "content_form", locals: { form: form }
