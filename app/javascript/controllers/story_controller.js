@@ -4,24 +4,37 @@ export default class extends Controller {
   static targets = ["title", "title_length"];
 
   connect() {
-    // document.addEventListener("selectionchange", () => {
-    //   const editor_clicked = document.activeElement.id == "story_content";
-    //   const popup = document.getElementById("text-options");
-    //   if (editor_clicked || popup) this.handleSelectionChange();
-    // });
+    let lastInputMethod = null;
 
-    document.addEventListener("mouseup", () => {
+    document.querySelector("trix-editor").addEventListener("mousedown", () => {
+      lastInputMethod = "mouse";
+    });
+
+    document.querySelector("trix-editor").addEventListener("keydown", () => {
+      lastInputMethod = "keyboard";
+    });
+
+    document.querySelector("trix-editor").addEventListener("mouseup", () => {
+      const selectedText = this.getSelectedText();
+
+      if (selectedText.trim().length > 0) this.handleSelectionChange();
+    });
+
+    document.addEventListener("selectionchange", (e) => {
       const editor_clicked = document.activeElement.id == "story_content";
-      const popup = document.getElementById("text-options");
-      if (editor_clicked || popup) this.handleSelectionChange();
+      if (!editor_clicked || lastInputMethod == "mouse") {
+        this.hideTextOptions();
+        return;
+      }
+
+      // const popup = document.getElementById("text-options"); not sure why i added this, might be added later
+      if (editor_clicked) this.handleSelectionChange();
     });
   }
 
   handleSelectionChange() {
     const selectedText = this.getSelectedText();
-    const selection = window.getSelection();
 
-    console.log(selection);
     if (document.activeElement.id == "text-options") {
       return;
     }
