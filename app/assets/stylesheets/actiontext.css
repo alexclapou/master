@@ -1,0 +1,65 @@
+/*
+ * Provides a drop-in pointer for the default Trix stylesheet that will format the toolbar and
+ * the trix-editor content (whether displayed or under editing). Feel free to incorporate this
+ * inclusion directly in any other asset bundle and remove this file.
+ *
+ *= require trix
+*/
+
+/*
+ * We need to override trix.css’s image gallery styles to accommodate the
+ * <action-text-attachment> element we wrap around attachments. Otherwise,
+ * images in galleries will be squished by the max-width: 33%; rule.
+*/
+.trix-content .attachment-gallery > action-text-attachment,
+.trix-content .attachment-gallery > .attachment {
+  flex: 1 0 33%;
+  padding: 0 0.5em;
+  max-width: 33%;
+}
+
+.trix-content .attachment-gallery.attachment-gallery--2 > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--2 > .attachment, .trix-content .attachment-gallery.attachment-gallery--4 > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--4 > .attachment {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.trix-content action-text-attachment .attachment {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+/* trix-toolbar { display: none; } */
+
+.trix-content, #story_content{
+    font-family: serif;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  strong {
+    font-weight: 800;
+  }
+  pre{
+    border-radius: 3px;
+    color: rgb(46,46,46)  ;
+    border: 1px solid rgb(46,46,46);
+    background-color: #eee !important;
+    overflow-x: auto !important
+  }
+  ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: 1rem;
+  }
+
+  blockquote {
+    border: 0 solid rgb(46,46,46);
+    border-left-width: 0px;
+    border-left-width: 2.5px;
+    margin-left: 0.3em;
+    padding-left: 0.3em;
+  }
+}
