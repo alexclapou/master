@@ -14,13 +14,16 @@ export default class extends Controller {
       lastInputMethod = "keyboard";
     });
 
-    document.querySelector("trix-editor").addEventListener("mouseup", () => {
-      const selectedText = this.getSelectedText();
+    document.addEventListener("mouseup", () => {
+      const editor_clicked = document.activeElement.id == "story_content";
+      if (!editor_clicked) return;
 
+      const selectedText = this.getSelectedText();
       if (selectedText.trim().length > 0) this.handleSelectionChange();
     });
 
     document.addEventListener("selectionchange", (e) => {
+      console.log(this.getSelectedText());
       const editor_clicked = document.activeElement.id == "story_content";
       if (!editor_clicked || lastInputMethod == "mouse") {
         this.hideTextOptions();
