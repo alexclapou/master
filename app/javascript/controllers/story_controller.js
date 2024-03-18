@@ -27,7 +27,7 @@ export default class extends Controller {
         return;
       }
 
-      // const popup = document.getElementById("text-options"); not sure why i added this, might be added later
+      // const popup = document.getElementById("text-options"); don't remember why i added this; might help later
       if (editor_clicked) this.handleSelectionChange();
     });
   }
