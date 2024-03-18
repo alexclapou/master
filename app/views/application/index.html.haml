@@ -1,7 +1,8 @@
 -# = provide(:title, 'First Page')
 
 .trix-content
-  = Story.last.content
+  - if current_user.present? && current_user.stories.present?
+    = Story.last.content
 %div
   '------------------------------------------------------------------------------------------------------------------------'
 %span.text-secondary
