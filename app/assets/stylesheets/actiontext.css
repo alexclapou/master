@@ -32,13 +32,16 @@
 /* trix-toolbar { display: none; } */
 
 .trix-content, #story_content{
-    font-family: serif;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+  font-family: serif;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   strong {
     font-weight: 800;
   }
   pre{
+    margin: 10px;
+    padding: 1rem;
+    font-size: .8rem;
     border-radius: 3px;
     color: rgb(46,46,46)  ;
     border: 1px solid rgb(46,46,46);
@@ -62,4 +65,21 @@
     margin-left: 0.3em;
     padding-left: 0.3em;
   }
+
+  figure{
+    background-color: red !important;
+    margin: auto !important;
+    width: 500px !important;
+  }
+
+  h1{
+    font-weight: 600;
+  }
+}
+#trix-toolbar-1{
+  position: -webkit-sticky !important; /* Safari */
+  top: 10px;
+  z-index: 999999;
+  background-color: white;
+  position: sticky !important;
 }

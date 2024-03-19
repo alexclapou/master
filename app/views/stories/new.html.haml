@@ -3,13 +3,14 @@
 .w-full.max-w-contentmax.mx-auto{ "data-controller": "story" }
   = form_with model: @story do |form|
 
-    .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.sticky.top-4.bg-secondary.p-4.shadow-sm.rounded
+    .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.top-4.p-4.rounded
+      %div
+        %span.py-1.px-2.rounded-sm.bg-white.font-medium
+          Edit
+        %span.py-1.px-2.ml-1.rounded-sm.border
+          Preview
       .py-1.px-2.rounded-sm.bg-green-200
         =form.submit 'Publish'
-      %div
-        %span.py-1.px-2.rounded-sm.bg-white.font-medium.text-secondary
-          Edit
-        %span.py-1.px-2.ml-1.rounded-sm.text-white.border
-          Preview
+
     .mx-6.md:mx-0
       = render partial: "form", locals: { form: form }
