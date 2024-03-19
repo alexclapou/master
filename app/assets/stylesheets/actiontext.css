@@ -76,7 +76,7 @@
     font-weight: 600;
   }
 }
-#trix-toolbar-1{
+trix-toolbar{
   position: -webkit-sticky !important; /* Safari */
   top: 10px;
   z-index: 999999;
