@@ -2,7 +2,7 @@
 
 .trix-content
   - if current_user.present? && current_user.stories.present?
-    = Story.last.content
+    = Story.last.content.to_s.html_safe
 %div
   '------------------------------------------------------------------------------------------------------------------------'
 %span.text-secondary
