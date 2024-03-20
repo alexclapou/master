@@ -20,7 +20,7 @@ hue-6-2: #c18401
 
 .hljs {
   color: #383a42 !important;
-  background: #f5f5f5 !important;
+  background: rgb(249, 249, 249) !important;
 }
 
 .hljs-comment,

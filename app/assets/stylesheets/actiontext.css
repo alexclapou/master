@@ -45,7 +45,7 @@
     border-radius: 3px;
     color: #383a42 !important;
     background: #f5f5f5 !important;
-    border: 1px solid var(--color-text-behindfade);
+    border: 1px solid rgb(229, 229, 229);
     overflow-x: auto !important
   }
   ul {
