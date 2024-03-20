@@ -53,11 +53,6 @@
     padding-left: 1rem;
   }
 
-  ol {
-    list-style-type: decimal;
-    padding-left: 1rem;
-  }
-
   blockquote {
     border: 0 solid rgb(46,46,46);
     border-left-width: 0px;
@@ -74,6 +69,7 @@
 
   h1{
     font-weight: 600;
+    font-size: 24px;
   }
 
   mark{
@@ -89,8 +85,8 @@
 }
 
 trix-toolbar{
-  position: -webkit-sticky !important; /* Safari */
-  top: 10px;
+  top: 50px !important;
+  border-radius: 5px;
   z-index: 999999;
   background-color: white;
   position: sticky !important;
@@ -101,4 +97,52 @@ trix-toolbar .trix-button--icon-highlight::before{
   height: 18px;
   width: 18px;
   margin: auto auto;
+}
+
+.trix-button--icon-strike,
+.trix-button--icon-attach,
+.trix-button-group-spacer,
+.trix-button-group--history-tools,
+.trix-button-group--file-tools,
+.trix-button--icon-increase-nesting-level,
+.trix-button--icon-decrease-nesting-level,
+.trix-button--icon-number-list,
+.trix-button-group--history-tools {
+  display: none !important;
+}
+
+.trix-button-row{
+  justify-content: center!important;
+  color: #3a3a40 !important;
+  .trix-button-group{
+    cursor: default !important;
+    margin: 0 !important;
+    border: none !important;
+    /* ::before{
+      display: none !important
+    } */
+    * {
+      border: none !important;
+    }
+    button {
+      border-radius: 5px;
+      width: 50px;
+      padding: 0 !important;
+      margin: 5px;
+      border: 1px solid rgb(229, 229, 229) !important;
+      &:hover{
+        background-color: var(--color-text-behind-fade);
+      }
+    }
+  }
+}
+
+.stickytab{
+  background-color: var(--color-text-behind-fade);
+  border: 1px solid rgb(229, 229, 229) !important;
+  button {
+    &:hover{
+      background-color: white !important;
+    }
+  }
 }
