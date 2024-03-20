@@ -5,12 +5,16 @@ export default class extends Controller {
   static targets = ["button", "dropdown"];
 
   connect() {
-    hljs.configure({
-      ignoreUnescapedHTML: true,
-    });
-
+    // these need to be removed and moved to a story_controller
     document.querySelectorAll("pre").forEach((el) => {
       hljs.highlightElement(el);
+    });
+
+    document.querySelectorAll("a").forEach(function (link) {
+      console.log(link);
+      if (link.host !== window.location.host) {
+        link.target = "_blank";
+      }
     });
   }
 
