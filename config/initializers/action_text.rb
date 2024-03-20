@@ -6,6 +6,6 @@ Rails.application.config.after_initialize do
   default_allowed_tags = Rails::HTML5::Sanitizer.safe_list_sanitizer.allowed_tags + Set.new([
                                                                                               ActionText::Attachment.tag_name, "figure", "figcaption"
                                                                                             ])
-  custom_allowed_tags = Set.new(%w[mark])
+  custom_allowed_tags = Set.new(%w[mark iframe])
   ActionText::ContentHelper.allowed_tags = (default_allowed_tags + custom_allowed_tags).freeze
 end

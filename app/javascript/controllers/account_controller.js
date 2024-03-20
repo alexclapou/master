@@ -10,12 +10,15 @@ export default class extends Controller {
       hljs.highlightElement(el);
     });
 
-    document.querySelectorAll("a").forEach(function (link) {
-      console.log(link);
-      if (link.host !== window.location.host) {
-        link.target = "_blank";
-      }
-    });
+    // document
+    //   .querySelector(".trix-content")
+    //   .querySelectorAll("a")
+    //   .forEach(function (link) {
+    //     console.log(link);
+    //     if (link.host !== window.location.host) {
+    //       link.target = "_blank";
+    //     }
+    //   });
   }
 
   toggle_dropdown(event) {
