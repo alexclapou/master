@@ -32,6 +32,7 @@
 /* trix-toolbar { display: none; } */
 
 .trix-content, #story_content{
+  height: 500vh;
   font-family: serif;
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -125,6 +126,7 @@ trix-toolbar .trix-button--icon-highlight::before{
       border: none !important;
     }
     button {
+      background-color: white;
       border-radius: 5px;
       width: 50px;
       padding: 0 !important;
@@ -138,11 +140,31 @@ trix-toolbar .trix-button--icon-highlight::before{
 }
 
 .stickytab{
-  background-color: var(--color-text-behind-fade);
-  border: 1px solid rgb(229, 229, 229) !important;
-  button {
-    &:hover{
-      background-color: white !important;
+    border: 1px solid rgb(229, 229, 229) !important;
+    button {
+      &:hover{
+        background-color: var(--color-text-behind-fade) !important;
+      }
     }
+    animation: fadeIn 0.5s ease forwards; /* Apply animation when class is applied */
+}
+
+.notstickybar{
+  animation: reverseFadeIn 0.5s ease forwards; /* Apply animation when class is applied */
+  &:hover{
+    background-color: var(--color-text-behind-fade);
   }
+
+}
+
+@keyframes reverseFadeIn {
+  from {background-color: var(--color-text-behind-fade);}
+  to {background-color: white;}
+
+}
+
+@keyframes fadeIn {
+  from {background-color: white;}
+  to {background-color: var(--color-text-behind-fade);}
+
 }
