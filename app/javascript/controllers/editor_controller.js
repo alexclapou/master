@@ -3,8 +3,77 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["title", "tags", "title_length"];
 
-  add_tags(event) {
-    console.log(event.key);
+  connect() {
+    const tags = document.getElementById("tags");
+
+    tags.addEventListener("keydown", function (event) {
+      const input = tags.value;
+      const last_char = input.at(-1);
+
+      const invalid_char = [" ", undefined].includes(last_char) && event.key === " ";
+      console.log(/[a-zA-Z0-9\s-]/.test(input));
+      if (invalid_char) {
+        event.preventDefault();
+        return;
+      }
+
+      if (event.key == "Enter") {
+        if (last_char == undefined) return;
+        const chip = document.createElement("span");
+        const container = document.getElementById("tags-container");
+        let formatted_input = input.replace(/\s+/g, "-");
+        formatted_input = formatted_input.replace(/\.*$/g, "");
+
+        chip.textContent = formatted_input;
+        chip.style.border = "1px solid rgb(229, 229, 229)";
+
+        // Adding classes for chip styling
+        chip.classList.add(
+          "h-8",
+          "flex",
+          "items-center",
+          "whitespace-nowrap",
+          "rounded",
+          "bg-behindfade",
+          "px-3",
+          "text-xs",
+          "font-bold",
+          "lowercase",
+          "text-primary",
+          "m-1"
+        );
+
+        // Creating the SVG element
+        const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svgElement.setAttribute("class", "w-4 ml-2 cursor-pointer"); // Added ml-2 for margin and cursor-pointer for pointer cursor
+        svgElement.setAttribute("fill", "none");
+        svgElement.setAttribute("stroke", "currentColor");
+        svgElement.setAttribute("stroke-width", "2");
+        svgElement.setAttribute("viewBox", "0 0 24 24");
+
+        // Creating the path element
+        const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        pathElement.setAttribute("d", "M6 18L18 6M6 6l12 12");
+        pathElement.setAttribute("stroke-linecap", "round");
+        pathElement.setAttribute("stroke", "rgb(115,115,115)"); // Setting stroke color to red
+        pathElement.setAttribute("stroke-linejoin", "round");
+
+        // Appending the path element to the SVG element
+        svgElement.appendChild(pathElement);
+
+        // Appending the SVG element to the chip
+        chip.appendChild(svgElement);
+
+        // Adding click event listener to remove chip when SVG icon is clicked
+        svgElement.addEventListener("click", function () {
+          chip.remove();
+        });
+
+        // Appending the chip to the container
+        container.appendChild(chip);
+        tags.value = "";
+      }
+    });
   }
 
   check_limit() {

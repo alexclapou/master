@@ -3,7 +3,7 @@
 .w-full.max-w-contentmax.mx-auto{ "data-controller": "editor" }
   = form_with model: @story do |form|
 
-    .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.top-4.p-4.rounded
+    .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.top-4.p-4.rounded.w-full
       %div
         %span.py-1.px-2.rounded-sm.bg-white.font-medium
           Edit
@@ -12,6 +12,10 @@
       .py-1.px-2.rounded-sm.bg-green-200
         =form.submit 'Publish'
 
-    = form.text_area "asd", { class: "focus-visible:ring-0 appearance-none resize-none w-full border-t-0 border-l-0 border-r-0 mb-4", "data-editor-target": "tags", placeholder: '#tags', "data-action": "keydown.enter->editor#add_tags", maxlength: 500, rows: 1, spellcheck: false, "tabindex": "0"}
+    .w.full.flex.tags
+      .w-64
+        = form.text_field "asd", { class: "mr-4 w-52 focus-visible:ring-0 appearance-none border-none resize-none mb-4", "data-editor-target": "tags", placeholder: 'Tag', maxlength: 500, rows: 1, spellcheck: false, "tabindex": "0", id: "tags"}
+      #tags-container.w-full.flex.flex-wrap
+
     .mx-6.md:mx-0
       = render partial: "form", locals: { form: form }

@@ -32,7 +32,6 @@
 /* trix-toolbar { display: none; } */
 
 .trix-content, #story_content{
-  height: 500vh;
   font-family: serif;
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -83,6 +82,10 @@
   a {
     text-decoration: underline;
   }
+}
+
+.tags svg:hover path {
+  stroke: var(--color-text-primary);
 }
 
 trix-toolbar{
@@ -147,8 +150,8 @@ trix-toolbar .trix-button--icon-highlight::before{
   &:hover{
     background-color: var(--color-text-behind-fade);
   }
-
 }
+
 
 @keyframes reverseFadeIn {
   from {
