@@ -119,12 +119,6 @@ trix-toolbar .trix-button--icon-highlight::before{
     cursor: default !important;
     margin: 0 !important;
     border: none !important;
-    /* ::before{
-      display: none !important
-    } */
-    * {
-      border: none !important;
-    }
     button {
       background-color: white;
       border-radius: 5px;
@@ -140,17 +134,16 @@ trix-toolbar .trix-button--icon-highlight::before{
 }
 
 .stickytab{
-    border: 1px solid rgb(229, 229, 229) !important;
-    button {
-      &:hover{
-        background-color: var(--color-text-behind-fade) !important;
-      }
+  animation: fadeIn 1s ease forwards; /* Apply animation when class is applied */
+  button {
+    &:hover{
+      background-color: var(--color-text-behind-fade) !important;
     }
-    animation: fadeIn 0.5s ease forwards; /* Apply animation when class is applied */
+  }
 }
 
 .notstickybar{
-  animation: reverseFadeIn 0.5s ease forwards; /* Apply animation when class is applied */
+  animation: reverseFadeIn 1s ease forwards; /* Apply animation when class is applied */
   &:hover{
     background-color: var(--color-text-behind-fade);
   }
@@ -158,13 +151,23 @@ trix-toolbar .trix-button--icon-highlight::before{
 }
 
 @keyframes reverseFadeIn {
-  from {background-color: var(--color-text-behind-fade);}
-  to {background-color: white;}
-
+  from {
+    border: 1px solid rgb(229, 229, 229) !important;
+    background-color: var(--color-text-behind-fade);
+  }
+  to {
+    border: 1px solid white !important;
+    background-color: white;
+  }
 }
 
 @keyframes fadeIn {
-  from {background-color: white;}
-  to {background-color: var(--color-text-behind-fade);}
-
+  from {
+    border: 1px solid white !important;
+    background-color: white;
+  }
+  to {
+    border: 1px solid rgb(229, 229, 229);
+    background-color: var(--color-text-behind-fade);
+  }
 }

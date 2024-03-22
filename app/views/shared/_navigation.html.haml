@@ -11,20 +11,20 @@
 
       -# actions
       .flex.items-center.text-base.text-fade
-        .mr-5
+        .mr-5.text-primary
           .rounded-full.overflow-hidden
             = link_to root_path do 
               %i.w-9.h-9.p-2.hover:bg-behindfade{"data-feather" => "search"}
         - if user_signed_in?
           .mr-5
-            .rounded-full.overflow-hidden
+            .rounded-full.overflow-hidden.text-secondary
               = link_to root_path do 
                 %i.w-9.h-9.p-2.hover:bg-behindfade{"data-feather" => "bell"}
         - else
+          .mr-2.sm:mr-5.hover:text-primary
+            = link_to 'Join', new_user_registration_path
           .mr-5.hover:text-primary
             = link_to 'Sign In', new_user_session_path
-          .mr-2.sm:mr-5.hover:text-primary
-            = link_to 'Sign Up', new_user_registration_path
         .hidden.sm:block
           = link_to new_story_path do
             .bg-secondary.py-2-5.px-4-5.rounded.m-px.text-white.text-sm.hover:bg-primary
