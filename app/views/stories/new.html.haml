@@ -14,7 +14,7 @@
 
     .w.full.flex.tags
       .w-64
-        = form.text_field "asd", { class: "mr-4 w-52 focus-visible:ring-0 appearance-none border-none resize-none mb-4", "data-editor-target": "tags", placeholder: 'Tag', maxlength: 500, rows: 1, spellcheck: false, "tabindex": "0", id: "tags"}
+        = text_field_tag nil, nil, { class: "mr-4 w-52 focus-visible:ring-0 appearance-none border-none resize-none mb-4", "data-editor-target": "tags", placeholder: 'Tag', maxlength: 500, rows: 1, spellcheck: false, "tabindex": "0", id: "tags"}
       #tags-container.w-full.flex.flex-wrap
 
     .mx-6.md:mx-0

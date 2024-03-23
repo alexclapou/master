@@ -11,7 +11,6 @@ export default class extends Controller {
       const last_char = input.at(-1);
 
       const invalid_char = [" ", undefined].includes(last_char) && event.key === " ";
-      console.log(/[a-zA-Z0-9\s-]/.test(input));
       if (invalid_char) {
         event.preventDefault();
         return;
@@ -26,6 +25,7 @@ export default class extends Controller {
 
         chip.textContent = formatted_input;
         chip.style.border = "1px solid rgb(229, 229, 229)";
+        chip.setAttribute("data-value", "makai");
 
         // Adding classes for chip styling
         chip.classList.add(
@@ -62,6 +62,12 @@ export default class extends Controller {
         svgElement.appendChild(pathElement);
 
         // Appending the SVG element to the chip
+        const hiddenInput = document.createElement("input");
+        hiddenInput.setAttribute("type", "hidden");
+        hiddenInput.setAttribute("name", "story[tags][]");
+        hiddenInput.setAttribute("value", formatted_input);
+
+        chip.appendChild(hiddenInput);
         chip.appendChild(svgElement);
 
         // Adding click event listener to remove chip when SVG icon is clicked
