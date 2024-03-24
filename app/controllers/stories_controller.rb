@@ -8,7 +8,6 @@ class StoriesController < ApplicationController
 
   def create
     @story = current_user.stories.create(story_params)
-    redirect_to edit_story_path(@story)
   end
 
   def show; end
