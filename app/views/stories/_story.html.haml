@@ -1,0 +1,10 @@
+.max-w-contentmax.mx-auto.bg-gray-400{ "data-controller": "story" }
+  .flex
+    .mx-auto.flex.items-center.text-fade
+      - if story.tags
+        .flex.flex-wrap.max-w-96
+          = render story.tags
+      .font-medium.text-sm
+        = story.display_date
+  .text-5xl.font-bold.text-secondary
+    = story.title

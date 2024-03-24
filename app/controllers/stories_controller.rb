@@ -12,6 +12,8 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:title, :content)
+    permitted_params = params.require(:story).permit(:title, :content, tags: [])
+    tag_names = permitted_params.delete(:tags) || []
+    permitted_params.merge(tags: tag_names.map { |tag_name| Tag.find_or_create_by(name: tag_name) })
   end
 end

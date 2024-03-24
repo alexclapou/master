@@ -1,127 +1,15 @@
 -# = provide(:title, 'First Page')
 
-.trix-content
+.bg-red-200.w-full
   - if current_user.present? && current_user.stories.present?
-    = Story.last.content.to_s.html_safe
-%div
-  '------------------------------------------------------------------------------------------------------------------------'
-%span.text-secondary
-  asdaad
-%div.text-primary
-  asdaad
-%div.text-fade
-  asdaad
-%div.text-behindfade
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
-%div
-  asdaad
+    = render current_user.stories.last
+  %div
+    '------------------------------------------------------------------------------------------------------------------------'
+  %span.text-secondary
+    asdaad
+  %div.text-primary
+    asdaad
+  %div.text-fade
+    asdaad
+  %div.text-behindfade
+    asdaad

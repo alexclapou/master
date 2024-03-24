@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["title", "tags", "title_length"];
+  static targets = ["title", "title_length"];
 
   connect() {
     const tags = document.getElementById("tags");
@@ -17,7 +17,11 @@ export default class extends Controller {
       }
 
       if (event.key == "Enter") {
-        if (last_char == undefined) return;
+        if (last_char == undefined) {
+          event.preventDefault();
+          return;
+        }
+
         const chip = document.createElement("span");
         const container = document.getElementById("tags-container");
         let formatted_input = input.replace(/\s+/g, "-");
@@ -42,7 +46,6 @@ export default class extends Controller {
           "text-primary",
           "m-1"
         );
-
         // Creating the SVG element
         const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgElement.setAttribute("class", "w-4 ml-2 cursor-pointer"); // Added ml-2 for margin and cursor-pointer for pointer cursor
@@ -78,6 +81,9 @@ export default class extends Controller {
         // Appending the chip to the container
         container.appendChild(chip);
         tags.value = "";
+
+        event.preventDefault();
+        return;
       }
     });
   }

@@ -9,12 +9,11 @@
           Edit
         %span.py-1.px-2.ml-1.rounded-sm.border
           Preview
-      .py-1.px-2.rounded-sm.bg-green-200
-        =form.submit 'Publish'
+      = form.submit 'Publish', class: "py-1 px-2 rounded-sm bg-green-200 cursor-pointer"
 
     .w.full.flex.tags
       .w-64
-        = text_field_tag nil, nil, { class: "mr-4 w-52 focus-visible:ring-0 appearance-none border-none resize-none mb-4", "data-editor-target": "tags", placeholder: 'Tag', maxlength: 500, rows: 1, spellcheck: false, "tabindex": "0", id: "tags"}
+        = text_field_tag "", "", { class: "mr-4 w-52 focus-visible:ring-0 appearance-none border-none resize-none mb-4", placeholder: 'Tag', maxlength: 500, rows: 1, spellcheck: false, id: "tags"}
       #tags-container.w-full.flex.flex-wrap
 
     .mx-6.md:mx-0
