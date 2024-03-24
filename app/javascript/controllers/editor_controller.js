@@ -7,14 +7,20 @@ export default class extends Controller {
     let timeout;
 
     const save_draft = () => {
-      console.log("save");
       timeout = null;
+      const create_story = window.location.pathname == "/stories/new";
+
+      if (create_story) {
+        console.log("create story");
+        // window.history.pushState({}, "", "/stories/6");
+      } else {
+        console.log("update story");
+      }
     };
 
     document.addEventListener("keydown", (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "s") {
         e.preventDefault();
-        window.history.pushState({}, "", "/stories/6");
         save_draft();
       } else {
         if (!timeout) {
