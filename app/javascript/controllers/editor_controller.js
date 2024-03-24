@@ -1,4 +1,36 @@
 import { Controller } from "@hotwired/stimulus";
+const nonPrintableKeys = [
+  "Shift",
+  "Meta",
+  "Control",
+  "Alt",
+  "CapsLock",
+  "Tab",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "F1",
+  "F2",
+  "F3",
+  "F4",
+  "F5",
+  "F6",
+  "F7",
+  "F8",
+  "F9",
+  "F10",
+  "F11",
+  "F12",
+  "Escape",
+  "Home",
+  "End",
+  "PageUp",
+  "PageDown",
+  "Insert",
+  "Delete",
+  "Enter",
+];
 
 export default class extends Controller {
   static targets = ["title", "title_length"];
@@ -18,21 +50,43 @@ export default class extends Controller {
       }
     };
 
-    document.addEventListener("keydown", (e) => {
+    function debounce(func, delay) {
+      let timeoutId;
+      return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          func.apply(this, args);
+        }, delay);
+      };
+    }
+
+    document.addEventListener("keydown", function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key === "s") {
         e.preventDefault();
         save_draft();
-      } else {
-        if (!timeout) {
-          timeout = setTimeout(() => {
-            save_draft();
-          }, 3500);
-        }
       }
     });
 
-    const tags = document.getElementById("tags");
+    const inputs = document.querySelectorAll("trix-editor, textarea");
+    inputs.forEach(function (input) {
+      // Attach the event listener to each input and textarea element
+      input.addEventListener(
+        "keydown",
+        debounce(function (e) {
+          if (nonPrintableKeys.includes(e.key)) return;
 
+          if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+            e.preventDefault();
+            save_draft();
+          } else {
+            // Call save_draft after 3 seconds of inactivity
+            save_draft();
+          }
+        }, 3000)
+      ); // 3000 milliseconds = 3 seconds
+    });
+
+    const tags = document.getElementById("tags");
     tags.addEventListener("keydown", function (event) {
       const input = tags.value;
       const last_char = input.at(-1);
