@@ -1,4 +1,4 @@
-.max-w-contentmax.mx-auto.bg-gray-400{ "data-controller": "story" }
+.max-w-contentmax.mx-auto{ "data-controller": "story" }
   .flex
     .mx-auto.flex.items-center.text-fade
       - if story.tags
@@ -8,3 +8,5 @@
         = story.display_date
   .text-5xl.font-bold.text-secondary
     = story.title
+  .trix-content
+    = story.content
