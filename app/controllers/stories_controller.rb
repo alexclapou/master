@@ -7,12 +7,15 @@ class StoriesController < ApplicationController
   end
 
   def create
-    story = current_user.stories.create(story_params)
+    create_story_params = story_params.merge(draft: false)
+    story = current_user.stories.create(create_story_params)
 
     redirect_to story
   end
 
   def show; end
+
+  def update; end
 
   private
 

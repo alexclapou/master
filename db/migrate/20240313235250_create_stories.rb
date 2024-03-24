@@ -3,6 +3,7 @@ class CreateStories < ActiveRecord::Migration[7.1]
     create_table :stories do |t|
       t.string :title
       t.text :content
+      t.boolean :draft, default: true
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
