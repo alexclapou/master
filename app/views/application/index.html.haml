@@ -2,7 +2,8 @@
 
 .w-full
   - if current_user.present? && current_user.stories.present?
-    = render current_user.stories.last
+    - @story =current_user.stories.last 
+    = render @story
   %div
     '------------------------------------------------------------------------------------------------------------------------'
   %span.text-secondary
