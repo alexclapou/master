@@ -4,6 +4,27 @@ export default class extends Controller {
   static targets = ["title", "title_length"];
 
   connect() {
+    let timeout;
+
+    const save_draft = () => {
+      console.log("save");
+      timeout = null;
+    };
+
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+        e.preventDefault();
+        window.history.pushState({}, "", "/stories/6");
+        save_draft();
+      } else {
+        if (!timeout) {
+          timeout = setTimeout(() => {
+            save_draft();
+          }, 3500);
+        }
+      }
+    });
+
     const tags = document.getElementById("tags");
 
     tags.addEventListener("keydown", function (event) {

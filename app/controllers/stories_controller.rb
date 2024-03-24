@@ -7,10 +7,8 @@ class StoriesController < ApplicationController
   end
 
   def create
-    create_story_params = story_params.merge(draft: false)
-    story = current_user.stories.create(create_story_params)
-
-    redirect_to story
+    @story = current_user.stories.create(story_params)
+    redirect_to edit_story_path(@story)
   end
 
   def show; end
