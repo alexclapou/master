@@ -29,7 +29,6 @@ const nonPrintableKeys = [
   "PageDown",
   "Insert",
   "Delete",
-  "Enter",
 ];
 
 export default class extends Controller {
@@ -39,6 +38,7 @@ export default class extends Controller {
     let timeout;
 
     const save_draft = () => {
+      clearTimeout(timeout);
       timeout = null;
       const create_story = window.location.pathname == "/stories/new";
 
@@ -51,10 +51,9 @@ export default class extends Controller {
     };
 
     function debounce(func, delay) {
-      let timeoutId;
       return function (...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
           func.apply(this, args);
         }, delay);
       };
@@ -164,6 +163,7 @@ export default class extends Controller {
         tags.value = "";
 
         event.preventDefault();
+        save_draft();
         return;
       }
     });
