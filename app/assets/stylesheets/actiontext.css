@@ -32,11 +32,10 @@
 /* trix-toolbar { display: none; } */
 
 .trix-content, #story_content{
-  font-family: serif;
   font-size: 1.25rem;
   line-height: 1.75rem;
   strong {
-    font-weight: 800;
+    font-weight: 700;
   }
   pre{
     margin-top: 10px;
@@ -68,7 +67,7 @@
   }
 
   h1{
-    font-weight: 600;
+    font-weight: 800;
     font-size: 24px;
   }
 
