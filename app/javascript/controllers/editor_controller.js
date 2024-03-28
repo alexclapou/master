@@ -65,8 +65,8 @@ export default class extends Controller {
       const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
       feedback_span.innerHTML = "Saving...";
-      fetch("/stories", {
-        method: "post",
+      fetch(path, {
+        method: method,
         headers: {
           "Content-Type": "application/json",
           "X-CSRF-Token": csrfToken, // Include the CSRF token in the request headers
