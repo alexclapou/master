@@ -1,12 +1,21 @@
 .max-w-contentmax.mx-auto{ "data-controller": "story" }
   .flex
-    .mx-auto.flex.items-center.text-fade
+    %div
       - if @story.tags
-        .flex.flex-wrap.max-w-96
+        .flex.flex-wrap
           = render @story.tags
+  .text-5xl.font-bold.text-secondary.mb-8
+    = story.title
+  .border-y.p-4.flex.justify-between.my-6
+    %div
       .font-medium.text-sm
         = story.display_date
-  .text-5xl.font-bold.text-secondary
-    = story.title
+    .flex.gap-6.select-none
+      %div.flex.justify-center.items-center.gap-1
+        %i.w-5.h-5{"data-feather" => "thumbs-up"}
+        420
+      %div.flex.justify-center.items-center.gap-1
+        %i.w-5.h-5{"data-feather" => "message-circle"}
+        329
   .trix-content
     = story.content

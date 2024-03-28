@@ -34,20 +34,60 @@ const nonPrintableKeys = [
 export default class extends Controller {
   static targets = ["title", "title_length"];
 
+  disconnect() {
+    const button = document.querySelector("main");
+    button.replaceWith(button.cloneNode(true));
+  }
+
   connect() {
+    this.check_limit();
+    if (document.documentElement.hasAttribute("data-turbo-preview")) {
+      return;
+    }
     let timeout;
+    let saveTimeout;
 
     const save_draft = () => {
+      let new_story = window.location.pathname == "/stories/new";
+      const story = this.story_data();
+      const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"));
       clearTimeout(timeout);
       timeout = null;
-      const create_story = window.location.pathname == "/stories/new";
 
-      if (create_story) {
-        console.log("create story");
-        // window.history.pushState({}, "", "/stories/6");
+      let method;
+      if (new_story) {
+        method = "POST";
       } else {
-        console.log("update story");
+        method = "PUT";
       }
+
+      const feedback_span = document.getElementById("save_feedback");
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+      feedback_span.innerHTML = "Saving...";
+      fetch("/stories", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken, // Include the CSRF token in the request headers
+        },
+        body: JSON.stringify({ story }),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (new_story) {
+            window.history.pushState({}, "", `/stories/${data}/edit`);
+            new_story = false;
+          }
+        });
+      feedback_span.innerHTML = "Saved";
+
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        feedback_span.innerHTML = "";
+      }, 2000);
     };
 
     function debounce(func, delay) {
@@ -59,12 +99,17 @@ export default class extends Controller {
       };
     }
 
-    document.addEventListener("keydown", function (e) {
+    function force_save(e) {
       if ((e.metaKey || e.ctrlKey) && e.key === "s") {
         e.preventDefault();
         save_draft();
       }
-    });
+    }
+
+    if (!document.forceSaveAdded) {
+      document.addEventListener("keydown", force_save);
+      document.forceSaveAdded = true;
+    }
 
     const inputs = document.querySelectorAll("trix-editor, textarea");
     inputs.forEach(function (input) {
@@ -167,6 +212,18 @@ export default class extends Controller {
         return;
       }
     });
+  }
+
+  story_data() {
+    const form = document.querySelector("form");
+    const tags_container = document.getElementById("tags-container");
+    var tags = Array.from(tags_container.querySelectorAll("span")).map((span) => span.textContent);
+
+    return {
+      title: form.querySelector('[name="story[title]"]').value,
+      content: form.querySelector('[name="story[content]"]').value,
+      tags: tags,
+    };
   }
 
   check_limit() {
