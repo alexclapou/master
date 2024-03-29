@@ -4,11 +4,12 @@
   = form_with model: @story do |form|
 
     .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.top-4.p-4.rounded.w-full
-      %div
-        %span.py-1.px-2.rounded-sm.bg-white.font-medium
-          Edit
-        %span.py-1.px-2.ml-1.rounded-sm.border
-          Preview
+      %div.flex.justify-center.items-center
+        %label.inline-flex.items-center.cursor-pointer{style: "width: 6.5rem"}
+          %input.sr-only.peer{type: "checkbox", value: ""}
+          .relative.w-9.h-5.border.border-fade.bg-behindfade.rounded-full.peer.peer-checked:after:translate-x-full.rtl:peer-checked:after:-translate-x-full.peer-checked:after:border-white.after:absolute.after:bg-white.after:border-gray-300.after:border.after:rounded-full.after:h-4.after:w-4.after:transition-all.peer-checked:bg-secondary{class: "after:content-[''] after:top-[1px] after:start-[2px] after:end-[4px]"}
+          %span.ms-3.text-sm.font-medium.text-gray-900.select-none.peer-checked:font-bold
+            Preview
         - if @story.draft
           %span.py-1.px-2.ml-1.text-xs.italic
             Draft
