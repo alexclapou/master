@@ -5,10 +5,10 @@
 
     .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.top-4.p-4.rounded.w-full
       %div.flex.justify-center.items-center
-        %label.inline-flex.items-center.cursor-pointer{style: "width: 6.5rem"}
+        %label.inline-flex.items-center.cursor-pointer{style: "width: 7rem"}
           %input.sr-only.peer{type: "checkbox", value: ""}
-          .relative.w-9.h-5.border.border-fade.bg-behindfade.rounded-full.peer.peer-checked:after:translate-x-full.rtl:peer-checked:after:-translate-x-full.peer-checked:after:border-white.after:absolute.after:bg-white.after:border-gray-300.after:border.after:rounded-full.after:h-4.after:w-4.after:transition-all.peer-checked:bg-secondary{class: "after:content-[''] after:top-[1px] after:start-[2px] after:end-[4px]"}
-          %span.ms-3.text-sm.font-medium.text-gray-900.select-none.peer-checked:font-bold
+          .relative.w-11.h-6.bg-behindfade.rounded-full.peer.peer-checked:after:border-secondary.after:absolute.after:bg-white.after:border-borderfade.after:border.after:rounded-full.after:h-5.after:w-5.after:transition-all.peer-checked:bg-secondary{style: "border: 1px solid rgb(229, 229, 229) !important", class: "after:content-[''] after:top-[1px] after:start-[2px] peer-checked:after:translate-x-[88%]"}
+          %span.ms-3.text-sm.font-medium.select-none.peer-checked:font-bold.text-secondary
             Preview
         - if @story.draft
           %span.py-1.px-2.ml-1.text-xs.italic

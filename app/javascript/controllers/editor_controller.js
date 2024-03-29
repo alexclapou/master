@@ -123,7 +123,7 @@ export default class extends Controller {
         formatted_input = formatted_input.replace(/\.*$/g, "");
 
         chip.textContent = formatted_input;
-        chip.style.border = "1px solid var(--color-text-fade)";
+        chip.style.border = "1px solid var(--color-border-fade)";
         chip.setAttribute("data-value", "makai");
 
         // Adding classes for chip styling

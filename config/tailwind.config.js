@@ -1,25 +1,11 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: [
-    "./public/*.html",
-    "./app/helpers/**/*.rb",
-    "./app/javascript/**/*.js",
-    "./app/views/**/*.{erb,haml,html,slim}",
-  ],
+  content: ["./public/*.html", "./app/helpers/**/*.rb", "./app/javascript/**/*.js", "./app/views/**/*.{erb,haml,html,slim}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Helvetica Neue",
-          "Helvetica",
-          "Roboto",
-          "Arial",
-          "sans-serif",
-          ...defaultTheme.fontFamily.sans,
-        ],
+        sans: ["-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Helvetica", "Roboto", "Arial", "sans-serif", ...defaultTheme.fontFamily.sans],
         source: ["Source\\ Serif\\ 4", "sans-serif"],
       },
       fontSize: {
@@ -49,13 +35,9 @@ module.exports = {
         behindfade: "var(--color-text-behind-fade)",
         primary: "var(--color-text-primary)",
         secondary: "var(--color-text-secondary)",
+        borderfade: "var(--color-border-fade)",
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/container-queries"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/aspect-ratio"), require("@tailwindcss/typography"), require("@tailwindcss/container-queries")],
 };
