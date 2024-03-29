@@ -1,35 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-const nonPrintableKeys = [
-  "Shift",
-  "Meta",
-  "Control",
-  "Alt",
-  "CapsLock",
-  "Tab",
-  "ArrowUp",
-  "ArrowDown",
-  "ArrowLeft",
-  "ArrowRight",
-  "F1",
-  "F2",
-  "F3",
-  "F4",
-  "F5",
-  "F6",
-  "F7",
-  "F8",
-  "F9",
-  "F10",
-  "F11",
-  "F12",
-  "Escape",
-  "Home",
-  "End",
-  "PageUp",
-  "PageDown",
-  "Insert",
-  "Delete",
-];
+const nonPrintableKeys = ["Shift", "Meta", "Control", "Alt", "CapsLock", "Tab", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "Escape", "Home", "End", "PageUp", "PageDown", "Insert", "Delete"];
 
 export default class extends Controller {
   static targets = ["title", "title_length"];
@@ -157,20 +127,7 @@ export default class extends Controller {
         chip.setAttribute("data-value", "makai");
 
         // Adding classes for chip styling
-        chip.classList.add(
-          "h-8",
-          "flex",
-          "items-center",
-          "whitespace-nowrap",
-          "rounded",
-          "bg-behindfade",
-          "px-3",
-          "text-xs",
-          "font-bold",
-          "lowercase",
-          "text-primary",
-          "m-1"
-        );
+        chip.classList.add("h-8", "flex", "items-center", "whitespace-nowrap", "rounded", "bg-behindfade", "px-3", "text-xs", "font-bold", "lowercase", "text-primary", "m-1");
         // Creating the SVG element
         const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgElement.setAttribute("class", "w-4 ml-2 cursor-pointer"); // Added ml-2 for margin and cursor-pointer for pointer cursor
@@ -218,9 +175,7 @@ export default class extends Controller {
   story_data() {
     const form = document.querySelector("form");
     const tags_container = document.getElementById("tags-container");
-    const tags = Array.from(tags_container.querySelectorAll("span")).map(
-      (span) => span.textContent
-    );
+    const tags = Array.from(tags_container.querySelectorAll("span")).map((span) => span.textContent);
 
     return {
       title: form.querySelector('[name="story[title]"]').value,
