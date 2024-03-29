@@ -1,5 +1,6 @@
 .w-full.max-w-contentmax.mx-auto{ "data-controller": "editor" }
   = form_with model: @story do |form|
+    = hidden_field_tag 'tag_list', @story.tags.pluck(:name)
 
     .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.top-4.p-4.rounded.w-full
       %div.flex.justify-center.items-center
