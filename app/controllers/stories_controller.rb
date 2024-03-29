@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_story, only: %w[show edit]
+  before_action :load_story, only: %w[show edit update]
 
   def new
     @story = Story.new
@@ -19,6 +19,7 @@ class StoriesController < ApplicationController
   def show; end
 
   def update
+    @story.update(story_params)
     render json: :success
   end
 

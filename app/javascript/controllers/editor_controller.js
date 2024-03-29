@@ -201,6 +201,7 @@ export default class extends Controller {
         // Adding click event listener to remove chip when SVG icon is clicked
         svgElement.addEventListener("click", function () {
           chip.remove();
+          save_draft();
         });
 
         // Appending the chip to the container
@@ -217,7 +218,9 @@ export default class extends Controller {
   story_data() {
     const form = document.querySelector("form");
     const tags_container = document.getElementById("tags-container");
-    var tags = Array.from(tags_container.querySelectorAll("span")).map((span) => span.textContent);
+    const tags = Array.from(tags_container.querySelectorAll("span")).map(
+      (span) => span.textContent
+    );
 
     return {
       title: form.querySelector('[name="story[title]"]').value,
