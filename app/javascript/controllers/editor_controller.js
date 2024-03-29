@@ -74,6 +74,7 @@ export default class extends Controller {
         body: JSON.stringify({ story }),
       })
         .then((response) => {
+          feedback_span.innerHTML = "Saved";
           return response.json();
         })
         .then((data) => {
@@ -82,7 +83,6 @@ export default class extends Controller {
             new_story = false;
           }
         });
-      feedback_span.innerHTML = "Saved";
 
       clearTimeout(saveTimeout);
       saveTimeout = setTimeout(() => {
