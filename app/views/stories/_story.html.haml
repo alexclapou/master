@@ -4,13 +4,13 @@
       - if @story.tags
         .flex.flex-wrap
           = render @story.tags
-  .text-5xl.font-bold.text-secondary.mb-8
+  .text-5xl.font-bold.text-secondary
     = story.title
-  .border-y.p-4.flex.justify-between.my-6
+  .border-y.p-3.flex.justify-between.my-6
     %div
       .font-medium.text-sm
         = story.display_date
-    .flex.gap-6.select-none
+    .flex.gap-6.select-none.text-sm
       %div.flex.justify-center.items-center.gap-1
         %i.w-5.h-5{"data-feather" => "thumbs-up"}
         420
