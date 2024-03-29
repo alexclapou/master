@@ -1,13 +1,33 @@
 import { Controller } from "@hotwired/stimulus";
 import { debounce } from "../helpers";
+
 const nonPrintableKeys = ["Shift", "Meta", "Control", "Alt", "CapsLock", "Tab", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "Escape", "Home", "End", "PageUp", "PageDown", "Insert", "Delete"];
 
 export default class extends Controller {
-  static targets = ["title", "title_length"];
+  static targets = ["preview", "title", "title_length"];
 
   disconnect() {
     const button = document.querySelector("main");
     button.replaceWith(button.cloneNode(true));
+  }
+
+  preview() {
+    const should_preview = this.previewTarget.checked;
+    const story_content = document.getElementById("story-content");
+    const preview = document.getElementById("preview");
+
+    if (should_preview) {
+      story_content.style.display = "none";
+      preview.style.display = "block";
+    } else {
+      story_content.style.display = "block";
+      preview.style.display = "none";
+      return;
+    }
+
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/")) + "/preview";
+    preview.src = path;
+    preview.reload();
   }
 
   connect() {

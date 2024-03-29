@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_story, only: %w[show edit update]
+  before_action :load_story, only: %w[show edit update preview]
 
   def new
     @story = Story.new
@@ -23,6 +23,10 @@ class StoriesController < ApplicationController
     render json: :success
   end
 
+  def preview
+    render @story
+  end
+
   private
 
   def story_params
@@ -33,6 +37,6 @@ class StoriesController < ApplicationController
   end
 
   def load_story
-    @story = Story.find_by(id: params[:id])
+    @story = Story.find_by(id: params[:id] || params[:story_id])
   end
 end

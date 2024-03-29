@@ -5,7 +5,7 @@
     .mx-6.md:mx-0.mb-4.flex.justify-between.text-sm.h-10.items-center.top-4.p-4.rounded.w-full
       %div.flex.justify-center.items-center
         %label.inline-flex.items-center.cursor-pointer{style: "width: 7rem"}
-          %input.sr-only.peer{type: "checkbox", value: ""}
+          %input.sr-only.peer{disabled: @story.new_record?, "data-editor-target": "preview", "data-action": "click->editor#preview", type: "checkbox", value: ""}
           .relative.w-11.h-6.bg-behindfade.rounded-full.peer.peer-checked:after:border-secondary.after:absolute.after:bg-white.after:border-borderfade.after:border.after:rounded-full.after:h-5.after:w-5.after:transition-all.peer-checked:bg-secondary{style: "border: 1px solid rgb(229, 229, 229) !important", class: "after:content-[''] after:top-[1px] after:start-[2px] peer-checked:after:translate-x-[88%]"}
           %span.ms-3.text-sm.font-medium.select-none.peer-checked:font-bold.text-secondary
             Preview
@@ -16,12 +16,16 @@
         %span.py-1.px-2.ml-1.text-xs.italic#save_feedback
         = form.submit 'Publish', class: "py-1 px-2 rounded-sm bg-green-200 cursor-pointer"
 
-    .w.full.flex.tags
-      .w-64
-        = text_field_tag "", "", { class: "mr-4 w-52 focus-visible:ring-0 appearance-none border-none resize-none mb-4", placeholder: 'Tag', maxlength: 500, rows: 1, spellcheck: false, id: "tags"}
-      #tags-container.w-full.flex.flex-wrap
+    %turbo-frame{ id: "preview"}
+      %div
 
-    .mx-6.md:mx-0
-      .bg-white
-        = render partial: "text_field", locals: { form: form, name: "title", maxLength: 100, placeholder: "Title" }
-        = render partial: "text_field", locals: { form: form, name: "content", maxLength: nil, placeholder: "Tell your story..." }
+    #story-content
+      .w.full.flex.tags
+        .w-64
+          = text_field_tag "", "", { class: "mr-4 w-52 focus-visible:ring-0 appearance-none border-none resize-none mb-4", placeholder: 'Tag', maxlength: 500, rows: 1, spellcheck: false, id: "tags"}
+        #tags-container.w-full.flex.flex-wrap
+
+      .mx-6.md:mx-0
+        .bg-white
+          = render partial: "text_field", locals: { form: form, name: "title", maxLength: 100, placeholder: "Title" }
+          = render partial: "text_field", locals: { form: form, name: "content", maxLength: nil, placeholder: "Tell your story..." }

@@ -1,15 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
-import hljs from "highlight.js";
 
 export default class extends Controller {
   static targets = ["button", "dropdown"];
 
   connect() {
     // these need to be removed and moved to a story_controller
-    document.querySelectorAll("pre").forEach((el) => {
-      hljs.highlightElement(el);
-    });
-
     // document
     //   .querySelector(".trix-content")
     //   .querySelectorAll("a")
