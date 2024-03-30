@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus";
-import { debounce } from "../custom/helpers";
 
 const nonPrintableKeys = ["Shift", "Meta", "Control", "Alt", "CapsLock", "Tab", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "Escape", "Home", "End", "PageUp", "PageDown", "Insert", "Delete"];
 
@@ -99,6 +98,15 @@ export default class extends Controller {
         e.preventDefault();
         save_draft();
       }
+    }
+
+    function debounce(func, delay, timeout) {
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          func.apply(this, args);
+        }, delay);
+      };
     }
 
     function load_chips() {
