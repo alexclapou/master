@@ -11,6 +11,16 @@ export default class extends Controller {
     button.replaceWith(button.cloneNode(true));
   }
 
+  enable_preview() {
+    const is_disabled = this.previewTarget.disabled;
+    if (is_disabled) {
+      this.previewTarget.disabled = false;
+
+      const text = this.previewTarget.nextElementSibling.nextElementSibling;
+      text.classList.add("text-secondary");
+    }
+  }
+
   preview() {
     const should_preview = this.previewTarget.checked;
     const story_content = document.getElementById("story-content");
@@ -41,6 +51,7 @@ export default class extends Controller {
     let saveTimeout;
 
     const save_draft = () => {
+      this.enable_preview();
       let new_story = window.location.pathname == "/stories/new";
       const story = this.story_data();
       const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"));
