@@ -1,4 +1,4 @@
-.w-full.max-w-contentmax.mx-auto{ "data-controller": "editor" }
+.w-full.max-w-contentmax.mx-auto#editor{ "data-controller": "editor" }
   = form_with model: @story do |form|
     = hidden_field_tag 'tag_list', @story.tags.pluck(:name)
 
@@ -18,7 +18,6 @@
         = form.submit 'Publish', class: "py-1 px-2 rounded-sm bg-green-200 cursor-pointer"
 
     %turbo-frame{ id: "preview"}
-      %div
 
     #story-content
       .w.full.flex.tags
