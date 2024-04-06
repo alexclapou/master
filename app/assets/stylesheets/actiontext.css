@@ -60,10 +60,13 @@
     padding-left: 0.3em;
   }
 
-  figure{
-    background-color: red !important;
-    margin: auto !important;
-    width: 500px !important;
+  figure {
+    width: 100% !important;
+    text-align: center;
+    img {
+      margin: auto !important;
+      width: 90%;
+    }
   }
 
   h1{
