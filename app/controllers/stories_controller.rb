@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %w[show]
   before_action :load_story, only: %w[show edit update preview]
 
   def new
