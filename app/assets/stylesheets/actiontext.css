@@ -176,3 +176,9 @@ trix-toolbar .trix-button--icon-highlight::before{
     background-color: var(--color-text-behind-fade);
   }
 }
+
+input:focus{
+  outline: none !important;
+  box-shadow: none  !important;
+  border-color: var(--color-text-secondary) !important;
+}

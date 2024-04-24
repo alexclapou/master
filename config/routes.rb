@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     get "preview", to: "stories#preview"
   end
 
+  get "search(/:q)", to: "search#index", as: :search
+  
   root "application#index"
 end

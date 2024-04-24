@@ -1,0 +1,9 @@
+%form.flex.items-center.max-w-md.mx-auto
+  %label.sr-only{for: "voice-search"} Search
+  .relative.w-full
+    .absolute.inset-y-0.start-0.flex.items-center.select-none.cursor-default.pointer-events-auto
+      %i.w-9.h-9.p-2{"data-feather" => "search"}
+    %input#voice-search.border.border-fade.text-sm.rounded-lg.block.w-full.ps-10.focus-visible:outline-none{class: "p-2.5", placeholder: "Search stories, tags, users...", required: "", type: "text"}/
+    %button.absolute.inset-y-0.end-0.flex.items-center.pe-3{type: "button"}
+      %svg.w-4.h-4.text-gray-400{fill: "none", stroke: "currentColor", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
+        %path{d: "M6 18L18 6M6 6l12 12", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}

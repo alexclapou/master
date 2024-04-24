@@ -13,7 +13,7 @@
       .flex.items-center.text-base.text-fade
         .mr-5.text-primary
           .rounded-full.overflow-hidden
-            = link_to root_path do 
+            = link_to search_path do 
               %i.w-9.h-9.p-2.hover:bg-behindfade{"data-feather" => "search"}
         - if user_signed_in?
           .mr-5
