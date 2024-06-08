@@ -8,6 +8,8 @@
       - else
         Pe Caiet
     %meta{content: "width=device-width,initial-scale=1", name: "viewport"}/
+    -# https://stackoverflow.com/questions/78042975/rails-with-hotwire-turbo-doing-get-requests-on-link-hover
+    %meta{content: "false", name: "turbo-prefetch"}/
     %script{src: "https://unpkg.com/feather-icons"}
     = favicon_link_tag
     = csrf_meta_tags
