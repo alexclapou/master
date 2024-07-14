@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: 1e661db5c5b431c0ee88a383e8e3767f02dccbfe
+  revision: 73a5bc8bbd969b0358b725a1ae73efc4b65dfb3b
   branch: main
   specs:
     rspec-core (3.14.0.pre)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-expectations.git
-  revision: 21ab12523aa596e2e9ff472c21473990b8a8f316
+  revision: 130effd53cd812772cae1ac714412b54c3a8574b
   branch: main
   specs:
     rspec-expectations (3.14.0.pre)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: 66c3dcac3bf91d6d12bb6d54dcc2092657cba33a
+  revision: fe4d292a4e0d86031b5380b852c6484c6e9284ed
   branch: main
   specs:
     rspec-mocks (3.14.0.pre)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: 260b3bf8a10c1c9890c173d1ca097f2d1dfa2e39
+  revision: 8c17b4e5020a4d264e8a79e294c58b5c1ef2b005
   branch: main
   specs:
     rspec-rails (6.2.0.pre)
@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: 8cbf7f9aecbefacd74da16ec2e713358ff72925b
+  revision: 42b18c4ae6850244ede747ec348bfe4b04fa8876
   branch: main
   specs:
     rspec-support (3.14.0.pre)
@@ -213,10 +213,11 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
-    json (2.7.1)
+    json (2.7.2)
     jwt (2.8.1)
       base64
     language_server-protocol (3.17.0.3)
+    logger (1.6.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -281,12 +282,12 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
-    parallel (1.24.0)
-    parser (3.3.0.5)
+    parallel (1.25.1)
+    parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.6)
-    prism (0.24.0)
+    prism (0.30.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -338,6 +339,8 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.1.0)
+    rbs (3.5.2)
+      logger
     rdoc (6.6.2)
       psych (>= 4.0.0)
     redis (5.1.0)
@@ -351,22 +354,23 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
-    rubocop (1.60.2)
+    rubocop (1.65.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
+      regexp_parser (>= 2.4, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.30.0, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.31.2)
-      parser (>= 3.3.0.4)
-    ruby-lsp (0.14.5)
+    rubocop-ast (1.31.3)
+      parser (>= 3.3.1.0)
+    ruby-lsp (0.17.7)
       language_server-protocol (~> 3.17.0)
-      prism (>= 0.22.0, < 0.25)
+      prism (>= 0.29.0, < 0.31)
+      rbs (>= 3, < 4)
       sorbet-runtime (>= 0.5.10782)
     ruby-progressbar (1.13.0)
     ruby-vips (2.2.1)
@@ -382,7 +386,7 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
-    sorbet-runtime (0.5.11287)
+    sorbet-runtime (0.5.11481)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -476,8 +480,8 @@ DEPENDENCIES
   rspec-mocks!
   rspec-rails!
   rspec-support!
-  rubocop (~> 1.60.2)
-  ruby-lsp (~> 0.14.0)
+  rubocop
+  ruby-lsp
   selenium-webdriver
   shoulda-matchers
   sprockets-rails

@@ -6,8 +6,8 @@ gem "colorize"
 gem "haml"
 gem "pg"
 gem "pry"
-gem "rubocop", "~> 1.60.2"
-gem "ruby-lsp", "~> 0.14.0"
+gem "rubocop"
+gem "ruby-lsp"
 
 gem "devise"
 gem "omniauth"
@@ -55,11 +55,11 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem 'honeybadger'
-gem 'cancancan'
+gem "cancancan"
+gem "honeybadger"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+gem "aws-sdk-s3"
 gem "image_processing", "~> 1.2"
-gem 'aws-sdk-s3'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

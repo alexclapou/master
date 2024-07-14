@@ -1,4 +1,5 @@
 class StoriesController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, except: %w[show]
   before_action :load_story, only: %w[show edit update preview publish]
 
@@ -17,7 +18,7 @@ class StoriesController < ApplicationController
   def edit; end
 
   def show
-    @comment = Comment.new()
+    @comment = Comment.new
   end
 
   def update
