@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!, except: %w[show]
-  before_action :load_story, only: %w[show edit update preview]
+  before_action :load_story, only: %w[show edit update preview publish]
 
   def new
     @story = Story.new
@@ -25,6 +25,10 @@ class StoriesController < ApplicationController
 
   def preview
     render @story
+  end
+
+  def publish
+    @story.update(draft: false)
   end
 
   private

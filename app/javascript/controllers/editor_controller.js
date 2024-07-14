@@ -213,6 +213,29 @@ export default class extends Controller {
     });
   }
 
+  publish() {
+    if (window.location.pathname == "/stories/new") return;
+
+    const id = window.location.pathname.match(/\d+/g)[0];
+    const path = `/stories/${id}/publish`;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(path, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken, // Include the CSRF token in the request headers
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          window.location.href = `/stories/${id}`;
+        } else {
+          console.error("Failed to publish the story");
+        }
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+
   story_data() {
     const form = document.querySelector("form");
     const tags_container = document.getElementById("tags-container");
