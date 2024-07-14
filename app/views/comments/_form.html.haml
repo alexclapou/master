@@ -1,0 +1,6 @@
+= form_with(model: [@story, @comment], local: true) do |form|
+  .mb-4
+    = form.label :content, "Your Comment", class: "block text-sm font-medium text-gray-700"
+    = form.text_area :content, rows: 4, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+  .flex.justify-end
+    = form.submit "Post Comment", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

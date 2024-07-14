@@ -20,7 +20,8 @@
           0
     .trix-content
       = story.content
-
+    - if @comment
+      = render partial: "comments/form"
   :javascript
     feather.replace()
     document.querySelectorAll("pre").forEach((el) => {

@@ -3,7 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
 
-  has_many :stories, dependent: :delete_all # no need of (after/before)_destroy callbacks
+  has_many :stories, dependent: :destroy # no need of (after/before)_destroy callbacks
+  has_many :comments
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
