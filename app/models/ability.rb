@@ -4,8 +4,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    return unless user.present?
-
     # story
     cannot :manage, Story
     can :read, Story, draft: false
