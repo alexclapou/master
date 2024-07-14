@@ -31,6 +31,7 @@ class StoriesController < ApplicationController
   end
 
   def publish
+    flash.notice = "Story successfully published"
     @story.update(draft: false)
   end
 

@@ -20,8 +20,8 @@
     = javascript_importmap_tags
   %body
     = render partial: 'shared/navigation'
+    = render 'shared/flash_message'
     %main.max-w-pagemax.mx-auto.pt-8
-      = render 'shared/flash_message'
       = yield
     %script
       feather.replace()
