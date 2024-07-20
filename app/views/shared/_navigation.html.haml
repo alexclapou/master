@@ -30,11 +30,4 @@
             .bg-secondary.py-2-5.px-4-5.rounded.m-px.text-white.text-sm.hover:bg-primary
               Create Story
         - if user_signed_in?
-          .static{ "data-controller": "account" }
-            .sm:ml-5.select-none
-              .bg-behindfade.rounded-full.w-9.h-9.items-center.justify-center.flex.text-sm.font-normal.cursor-pointer{"data-account-target": "button", "data-action": "click@window->account#close_dropdown keydown.esc->account#close_dropdown click->account#toggle_dropdown", "tabindex": "0"}
-                - initials = current_user.name_initials
-                %span
-                  = initials
-            .absolute.top-19.ml-m184.sm:ml-m200
-              = render partial: "shared/navigation/user_dropdown"
+          = render partial: "users/initials_bubble", locals: { dropdown: true }

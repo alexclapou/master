@@ -6,8 +6,11 @@ class Ability
   def initialize(user)
     # story
     cannot :manage, Story
+    can(:manage, Story, user:)
     can :read, Story, draft: false
-    can :manage, Story, user:
+
+    cannot :manage, Comment
+    can :manage, Comment
 
     #   can :read, :all
     #   return unless user.admin?

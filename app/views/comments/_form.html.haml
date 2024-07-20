@@ -1,6 +1,14 @@
-= form_with(model: [@story, @comment], local: true) do |form|
-  .mb-4
-    = form.label :content, "Your Comment", class: "block text-sm font-medium text-gray-700"
-    = form.text_area :content, rows: 4, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-  .flex.justify-end
-    = form.submit "Post Comment", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+.mb-4
+  - if user_signed_in?
+    .border.shadow-md
+      = form_with(model: [@story, @comment], local: true) do |form|
+        .mb-4
+          .block.text-sm.font-medium.text-gray-700.flex.p-3
+            = current_user.name
+          = form.text_area :body, rows: 2, placeholder: "What are you thoughts?", class: "resize-none mt-1 block w-full border-none focus:ring-0"
+        .flex.justify-end.mr-4.mb-4
+          = form.submit "Comment", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-secondary cursor-pointer hover:bg-primary"
+  - else
+    .w-full.bg-behindfade.p-6.rounded-lg.flex.justify-center.items-center.font-semibold
+      .bg-secondary.py-1.px-4-5.rounded.m-px.text-white.hover:bg-primary
+        = link_to "Join the discussion", new_user_session_path
