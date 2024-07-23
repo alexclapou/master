@@ -2,11 +2,11 @@
   .block.text-sm.font-medium.text-gray-700.p-3
     .flex.gap-2.justify-between
       .flex.gap-2.mb-2
-        = render partial: "users/initials_bubble"
+        = render partial: "users/initials_bubble", locals: {user: comment.user}
         %div
           %div
             = comment.user.name
-          .text-xs
+          .text-xs.text-fade
             = time_ago_in_words(comment.created_at)
       %div.flex.justify-center.items-center.gap-1
         %i.w-5.h-5{"data-feather" => "heart"}
