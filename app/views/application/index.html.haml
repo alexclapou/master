@@ -1,7 +1,7 @@
 -# = provide(:title, 'First Page')
 
 .w-full
-  - Story.all.with_all_rich_text.includes(:tags).each do |story|
+  - Story.published.with_all_rich_text.includes(:tags).each do |story|
     = link_to story_path(story) do
       = render story
   %div
