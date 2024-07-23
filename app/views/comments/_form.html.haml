@@ -1,7 +1,7 @@
 .mb-4
   - if user_signed_in?
     .border.shadow-md.rounded-md
-      = form_with(model: [@story, @comment], local: true) do |form|
+      = form_with(model: [@story, @comment]) do |form|
         .mb-4
           .block.text-sm.font-medium.text-gray-700.flex.p-3
             = current_user.name

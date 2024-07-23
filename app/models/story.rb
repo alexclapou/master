@@ -3,7 +3,7 @@ class Story < ApplicationRecord
   has_rich_text :content
   has_one_attached :thumbnail
   has_and_belongs_to_many :tags
-  default_scope { order(created_at: :asc) }
+  default_scope { where(draft: false).order(created_at: :asc) }
   has_many :comments
 
   def display_date

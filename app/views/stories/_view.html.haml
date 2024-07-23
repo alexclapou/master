@@ -21,4 +21,5 @@
     = story.content
 
   = render partial: "comments/form"
-  = render @story.comments.includes(:user)
+  %turbo-frame{id: "comments"}
+    = render @story.comments.includes(:user)

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :comments, through: :story
 
   def create
-    @story.comments.create(comment_params)
+    @comment = @story.comments.create(comment_params)
   end
 
   private

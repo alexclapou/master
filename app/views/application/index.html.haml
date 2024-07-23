@@ -2,7 +2,8 @@
 
 .w-full
   - Story.all.with_all_rich_text.includes(:tags).each do |story|
-    = render story
+    = link_to story_path(story) do
+      = render story
   %div
     '------------------------------------------------------------------------------------------------------------------------'
   %span.text-secondary
