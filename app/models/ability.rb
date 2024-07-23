@@ -6,8 +6,9 @@ class Ability
   def initialize(user)
     # story
     cannot :manage, Story
-    can(:manage, Story, user:)
     can :read, Story, draft: false
+    can(:manage, Story, user:)
+    cannot :read, Story, user:, draft: true
 
     cannot :manage, Comment
     can :manage, Comment
