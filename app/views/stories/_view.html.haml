@@ -21,4 +21,4 @@
     = story.content
 
   = render partial: "comments/form"
-  = render @story.comments
+  = render @story.comments.includes(:user)
