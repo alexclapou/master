@@ -1,7 +1,16 @@
-.mb-10
+.mb-10.mx-auto{class:"w-11/12"}
   .block.text-sm.font-medium.text-gray-700.p-3
-    O
-    = comment.user.name
+    .flex.gap-2.justify-between
+      .flex.gap-2.mb-2
+        = render partial: "users/initials_bubble"
+        %div
+          %div
+            = comment.user.name
+          .text-xs
+            = time_ago_in_words(comment.created_at)
+      %div.flex.justify-center.items-center.gap-1
+        %i.w-5.h-5{"data-feather" => "heart"}
+
     %div
       = comment.body
-  .mx-auto.border-b{class:"w-11/12"}
+  .mx-auto.border-b.mx-auto

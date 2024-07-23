@@ -90,6 +90,12 @@
   stroke: var(--color-text-primary);
 }
 
+.filled-like {
+  fill: #AB4E52;
+  color: #AB4E52;
+}
+
+
 trix-toolbar{
   top: 50px !important;
   border-radius: 5px;
