@@ -1,3 +1,4 @@
+- comments = @story.comments.includes(:user)
 .max-w-contentmax.mx-auto.break-words
   .flex
     %div
@@ -16,10 +17,10 @@
         0
       %div.flex.justify-center.items-center.gap-1
         %i.w-5.h-5{"data-feather" => "message-circle"}
-        0
+        = comments.length
   .trix-content
     = story.content
 
   = render partial: "comments/form"
   %turbo-frame{id: "comments"}
-    = render @story.comments.includes(:user)
+    = render comments

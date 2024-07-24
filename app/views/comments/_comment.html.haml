@@ -10,6 +10,8 @@
             = time_ago_in_words(comment.created_at)
       %div.flex.justify-center.items-center.gap-1
         %i.w-5.h-5{"data-feather" => "heart"}
+        :javascript
+          feather.replace()
 
     %div
       = comment.body
