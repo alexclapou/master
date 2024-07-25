@@ -14,8 +14,10 @@
       = "Results for"
       .text-secondary
         = @search_term
-    .bg-behindfade.h-16.mt-4
-      %div
+    .h-16.mt-4
+      .border-b.py-2.mb-6
         Stories 
         Users
         Tags
+
+      = render @stories

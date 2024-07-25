@@ -1,5 +1,7 @@
 - if @comment
   = render partial: "stories/view", locals: { story: story }
+- elsif @search_term
+  = render partial: "stories/list_view", locals: {story: story}
 - else
   = render partial: "stories/preview", locals: { story: story}
 
