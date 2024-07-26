@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   get "search(/:q)", to: "search#index", as: :search
-  
+  get "search_stories(/:q)", to: "search#search_stories", as: :search_stories
+
   root "application#index"
 end

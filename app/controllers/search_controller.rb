@@ -9,4 +9,10 @@ class SearchController < ApplicationController
     @users = User.where("email ilike ?", "%#{@search_term}%")
     @tags = Tag.where("name ilike ?", "%#{@search_term}%")
   end
+
+  def search_stories
+    @search_term = params[:q]
+    @stories = Story.all
+    render @stories
+  end
 end

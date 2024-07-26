@@ -9,15 +9,21 @@
         %path{d: "M6 18L18 6M6 6l12 12", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
 
 - if @search_term
-  .mt-10.max-w-contentmax.mx-auto
+  .mt-10.max-w-contentmax.mx-auto{"data-controller": "search"}
     .text-4xl.font-bold.flex.gap-2
       = "Results for"
       .text-secondary
         = @search_term
-    .h-16.mt-4
-      .border-b.py-2.mb-6
-        Stories 
-        Users
-        Tags
+    .h-16.mt-4.text-fade
+      .border-b.mb-6.flex
+        #trigger-stories.p-2.border-b-2.border-secondary.hover:cursor-pointer.font-bold.text-secondary{"data-action": "click->search#search_stories" }
+          Stories
+        #trigger-users.p-2
+          Users
+        #trigger-tags.p-2
+          Tags
 
-      = render @stories
+  .max-w-contentmax.mx-auto.break-words
+    %turbo-frame{ id: "stories"}
+
+  
