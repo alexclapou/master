@@ -15,4 +15,16 @@ class SearchController < ApplicationController
     @stories = Story.all
     render @stories
   end
+
+  def search_users
+    @search_term = params[:q]
+    @users = User.all
+    render @users
+  end
+
+  def search_tags
+    @search_term = params[:q]
+    @tags = Tag.all
+    render @tags
+  end
 end

@@ -188,3 +188,17 @@ input:focus{
   box-shadow: none  !important;
   border-color: var(--color-text-secondary) !important;
 }
+
+.search-hover{
+  color: var(--color-text-fade) !important;
+  &:hover{
+    cursor: pointer;
+    color: var(--color-text-primary) !important;
+  }
+}
+
+.search-active{
+  border-color: var(--color-text-secondary) !important;
+  color: var(--color-text-primary) !important;
+  border-bottom: 2px solid
+}
