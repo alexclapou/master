@@ -1,26 +1,27 @@
 %turbo-frame{ id: "stories"}
   - @stories.each do |story|
-    .border-b.pb-4
-      .flex.gap-2.mb.text-xs.items-center
-        .bg-behindfade.rounded-full.w-7.h-7.items-center.justify-center.flex.text-sm.font-normal.cursor-pointer{"data-account-target": "button", "data-action": "click@window->account#close_dropdown keydown.esc->account#close_dropdown click->account#toggle_dropdown", "tabindex": "0"}
-          - initials = story.user.name_initials
-          %span
-            = initials
-        %div
+    = link_to story_path(story), data: { turbo: false } do
+      .border-b.pb-4.mb-4
+        .flex.gap-2.mb.text-xs.items-center
+          .bg-behindfade.rounded-full.w-7.h-7.items-center.justify-center.flex.text-sm.font-normal.cursor-pointer{"data-account-target": "button", "data-action": "click@window->account#close_dropdown keydown.esc->account#close_dropdown click->account#toggle_dropdown", "tabindex": "0"}
+            - initials = story.user.name_initials
+            %span
+              = initials
           %div
-            = story.user.name
-      .text-3xl.font-bold.text-secondary.mb-1
-        = story.title
-      .text-sm.text-fade.line-clamp-3{class:"w-8/12"}
-        = story.content.body.to_plain_text
-      .mt-2 
-        .flex.gap-6.select-none.text-sm
-          %div.flex.justify-center.items-center.gap-1
-            %i.w-5.h-5{"data-feather" => "heart"}
-            0
-          %div.flex.justify-center.items-center.gap-1
-            %i.w-5.h-5{"data-feather" => "message-circle"}
-            = story.comments.length
+            %div
+              = story.user.name
+        .text-3xl.font-bold.text-secondary.mb-1
+          = story.title
+        .text-sm.text-fade.line-clamp-3{class:"w-8/12"}
+          = story.content.body.to_plain_text
+        .mt-2 
+          .flex.gap-6.select-none.text-sm
+            %div.flex.justify-center.items-center.gap-1
+              %i.w-5.h-5{"data-feather" => "heart"}
+              0
+            %div.flex.justify-center.items-center.gap-1
+              %i.w-5.h-5{"data-feather" => "message-circle"}
+              = story.comments.length
   :javascript
     feather.replace()
     document.querySelectorAll("pre").forEach((el) => {

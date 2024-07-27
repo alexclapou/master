@@ -1,14 +1,15 @@
-.mb-4.mx-auto{class:"w-11/12"}
-  - if user_signed_in?
-    .border.shadow-md.rounded-md
-      = form_with(model: [@story, @comment], data: {controller: "comment", action: "turbo:submit-end->comment#clear_input"}) do |form|
-        .mb-4
-          .block.text-sm.font-medium.text-gray-700.flex.p-3
-            = current_user.name
-          = form.text_field :body, {placeholder: "What are you thoughts?", "data-comment-target": "input", class: "resize-none mt-1 block w-full border-none focus:ring-0"}
-        .flex.justify-end.mr-4.mb-4
-          = form.submit "Comment", { class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-secondary cursor-pointer hover:bg-primary"}
-  - else
-    .w-full.bg-behindfade.p-6.rounded-lg.flex.justify-center.items-center.font-semibold
-      .bg-secondary.py-1.px-4-5.rounded.m-px.text-white.hover:bg-primary
-        = link_to "Join the discussion", new_user_session_path
+.border-t.my-4
+  .my-4.mx-auto{class:"w-11/12"}
+    - if user_signed_in?
+      .border.shadow-md.rounded-md
+        = form_with(model: [@story, @comment], data: {controller: "comment", action: "turbo:submit-end->comment#clear_input"}) do |form|
+          .mb-4
+            .block.text-sm.font-medium.text-gray-700.flex.p-3
+              = current_user.name
+            = form.text_field :body, {placeholder: "What are you thoughts?", "data-comment-target": "input", class: "resize-none mt-1 block w-full border-none focus:ring-0"}
+          .flex.justify-end.mr-4.mb-4
+            = form.submit "Comment", { class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-secondary cursor-pointer hover:bg-primary"}
+    - else
+      .w-full.bg-behindfade.p-6.rounded-lg.flex.justify-center.items-center.font-semibold
+        .bg-secondary.py-1.px-4-5.rounded.m-px.text-white.hover:bg-primary
+          = link_to "Join the discussion", new_user_session_path
