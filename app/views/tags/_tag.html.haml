@@ -1,2 +1,7 @@
-.h-8.flex.items-center.whitespace-nowrap.rounded.bg-behindfade.px-3.text-xs.font-bold.lowercase.text-primary.m-1.mb-4
-  = "##{tag.name}"
+- if @search_term
+  %turbo-frame{ id: "tags"}
+    %div
+      = tag.name
+- else
+  .h-8.flex.items-center.whitespace-nowrap.rounded.bg-behindfade.px-3.text-xs.font-bold.lowercase.text-primary.m-1.mb-4
+    = "##{tag.name}"

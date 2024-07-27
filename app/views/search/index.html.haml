@@ -16,14 +16,15 @@
         = @search_term
     .h-16.mt-4.text-fade
       .border-b.mb-6.flex
-        #trigger-stories.p-2.border-b-2.border-secondary.hover:cursor-pointer.font-bold.text-secondary{"data-action": "click->search#search_stories" }
+        #trigger-stories.p-2.search-hover{"data-action": "click->search#search_stories" }
           Stories
-        #trigger-users.p-2
+        #trigger-users.p-2.search-hover{"data-action": "click->search#search_users" }
           Users
-        #trigger-tags.p-2
+        #trigger-tags.p-2.search-hover{"data-action": "click->search#search_tags" }
           Tags
 
   .max-w-contentmax.mx-auto.break-words
     %turbo-frame{ id: "stories"}
-
+    %turbo-frame{ id: "users"}
+    %turbo-frame{ id: "tags"}
   
