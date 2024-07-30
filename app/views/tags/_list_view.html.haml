@@ -1,0 +1,9 @@
+%turbo-frame{ id: "tags"}
+  - if @tags.present?
+    .flex.flex-wrap
+      - @tags.each do |tag|
+        .h-8.flex.items-center.whitespace-nowrap.rounded.bg-behindfade.px-3.text-xs.font-bold.lowercase.text-primary.m-1.mb-4{class:"w-3/12"}
+          = "##{tag.name}"
+  - else
+    .font-bold.p-2
+      = 'No tags found'

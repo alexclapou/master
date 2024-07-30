@@ -1,0 +1,7 @@
+%turbo-frame{ id: "users"}
+  - if @users.present?
+    - @users.each do |user|
+      = user.name
+  - else
+    .font-bold.p-2
+      = 'No users found'
