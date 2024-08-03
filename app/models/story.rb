@@ -6,6 +6,19 @@ class Story < ApplicationRecord
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(draft: false) }
   has_many :comments
+  has_many :likes, as: :record
+
+  def liked_by?(user)
+    likes.where(user:).any?
+  end
+
+  def like(user)
+    likes.where(user:).first_or_create
+  end
+
+  def unlike(user)
+    likes.where(user:).destroy_all
+  end
 
   def display_date
     created_at.strftime("%B #{created_at.day.ordinalize}, %Y")

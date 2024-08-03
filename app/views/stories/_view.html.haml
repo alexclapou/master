@@ -12,9 +12,7 @@
       .font-medium.text-sm
         = story.display_date
     .flex.gap-6.select-none.text-sm
-      %div.flex.justify-center.items-center.gap-1
-        %i.w-5.h-5{"data-feather" => "heart"}
-        0
+      = render partial: "likes", locals: { story: @story }
       %div.flex.justify-center.items-center.gap-1
         %i.w-5.h-5{"data-feather" => "message-circle"}
         = comments.length

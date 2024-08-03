@@ -1,0 +1,6 @@
+= link_to story_like_path(story), data: { turbo_method: :patch } do
+  %tag.flex.justify-center.items-center.gap-1{ id: dom_id(story, :likes) }
+    %i.w-5.h-5{"data-feather" => "heart", class: "#{story.liked_by?(current_user) ? "filled-like" : "" } "}
+    = story.likes_count
+    :javascript
+      feather.replace()

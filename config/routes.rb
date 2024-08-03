@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get "preview", to: "stories#preview"
     put "publish", to: "stories#publish"
     resources :comments
+    resource :like, module: :stories
   end
 
   get "search(/:q)", to: "search#index", as: :search
