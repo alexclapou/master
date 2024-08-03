@@ -15,7 +15,8 @@
       = render partial: "likes", locals: { story: @story }
       %div.flex.justify-center.items-center.gap-1
         %i.w-5.h-5{"data-feather" => "message-circle"}
-        = comments.length
+        %div{ id: dom_id(story, :comments) }
+          = comments.length
   .trix-content
     = story.content
 

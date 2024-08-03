@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :stories do
     get "preview", to: "stories#preview"
     put "publish", to: "stories#publish"
-    resources :comments
+    resources :comments do
+      resource :like, module: :comments
+    end
     resource :like, module: :stories
   end
 

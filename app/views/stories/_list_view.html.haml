@@ -19,7 +19,7 @@
             .flex.gap-6.select-none.text-sm
               %div.flex.justify-center.items-center.gap-1
                 %i.w-5.h-5{"data-feather" => "heart"}
-                0
+                = story.likes_count
               %div.flex.justify-center.items-center.gap-1
                 %i.w-5.h-5{"data-feather" => "message-circle"}
                 = story.comments.length

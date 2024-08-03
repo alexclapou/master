@@ -8,10 +8,7 @@
             = comment.user.name
           .text-xs.text-fade
             = time_ago_in_words(comment.created_at)
-      %div.flex.justify-center.items-center.gap-1
-        %i.w-5.h-5{"data-feather" => "heart"}
-        :javascript
-          feather.replace()
+      = render partial: "comments/likes", locals: {story: comment.story, comment: comment}
 
     %div
       = comment.body
