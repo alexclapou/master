@@ -5,7 +5,7 @@ class SearchController < ApplicationController
 
   def search_stories
     @search_term = params[:q]
-    @stories = Story.all.joins(:rich_text_content)
+    @stories = Story.published.joins(:rich_text_content)
                     .where("action_text_rich_texts.body ILIKE ?", "%#{@search_term}%")
                     .or(Story.published.where("title ilike ? ", "%#{@search_term}%"))
     render partial: "stories/list_view"
