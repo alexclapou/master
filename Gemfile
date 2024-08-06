@@ -8,6 +8,8 @@ gem "pg"
 gem "pry"
 gem "rubocop"
 gem "ruby-lsp"
+gem 'noticed'
+gem 'faker'
 
 gem "devise"
 gem "omniauth"
@@ -84,7 +86,6 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "faker"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
 end
