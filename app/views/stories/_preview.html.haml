@@ -13,11 +13,11 @@
           = story.display_date
       .flex.gap-6.select-none.text-sm
         %div.flex.justify-center.items-center.gap-1
-          %i.w-5.h-5{"data-feather" => "heart"}
-          0
+          %i.w-5.h-5{"data-feather" => "heart", class: "#{story.liked_by?(current_user) ? "filled-like" : "" } "}
+          = story.likes_count
         %div.flex.justify-center.items-center.gap-1
           %i.w-5.h-5{"data-feather" => "message-circle"}
-          0
+          = story.comments.size
     .trix-content
       = story.content
 
