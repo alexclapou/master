@@ -10,7 +10,7 @@
               %i.w-4.h-4{"data-feather" => "more-vertical"}
               = render partial: "comments/dropdown", locals: {comment: comment, story: comment.story}
           .text-xs.text-fade
-            = time_ago_in_words(comment.created_at)
+            = "#{time_ago_in_words(comment.created_at)} ago"
       = render partial: "comments/likes", locals: {story: comment.story, comment: comment}
 
     %div
