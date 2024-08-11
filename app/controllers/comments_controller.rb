@@ -1,10 +1,15 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource :story
+  load_and_authorize_resource :comment
   load_and_authorize_resource :comments, through: :story
 
   def create
     @comment = @story.comments.create(comment_params)
+  end
+
+  def destroy
+    @comment.destroy
   end
 
   private

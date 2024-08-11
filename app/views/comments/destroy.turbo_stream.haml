@@ -1,0 +1,2 @@
+= turbo_stream.replace(dom_id(@comment.story, :comments), "<div id=#{dom_id(@comment.story, :comments)}>#{@comment.story.comments.size}</div>")
+= turbo_stream.remove(dom_id(@comment, :comment))
