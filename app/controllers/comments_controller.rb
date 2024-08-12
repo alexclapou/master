@@ -12,6 +12,10 @@ class CommentsController < ApplicationController
     @comment.destroy
   end
 
+  def update
+    @comment.update(body: params[:body])
+  end
+
   private
 
   def comment_params

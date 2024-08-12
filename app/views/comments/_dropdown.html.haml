@@ -1,7 +1,7 @@
 .shadow.shadow.rounded.text-sm.border.bg-white.absolute.hidden.more-dd{"data-comment-target": "dropdown" }
-  = link_to root_path do
+  .edit-comment{"data-comment-target": "edit", "data-controller": "comment", "data-action": "click->comment#edit_comment" }
     .px-4.py-2-5.hover:bg-behindfade.border-b
       Edit
-  = link_to story_comment_path(story_id: story.id, id: comment.id), data: {turbo_method: :delete} do
+  = link_to story_comment_path(story_id: story.id, id: comment.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do
     .px-4.py-2-5.hover:bg-behindfade
       Delete

@@ -1,4 +1,4 @@
-.mb-10.mx-auto{class:"w-11/12", id: dom_id(comment, :comment)}
+.mb-10.mx-auto.comm{class:"w-11/12", id: dom_id(comment, :comment)}
   .block.text-sm.font-medium.text-gray-700.p-3
     .flex.gap-2.justify-between
       .flex.gap-2.mb-2
@@ -6,7 +6,7 @@
         %div
           %div.flex.justify-center.items-center.gap-2
             = comment.user.name
-            .more-comment.cursor-pointer{"data-comment-target": "button", "data-controller": "comment", "data-action": "click->comment#show_options" }
+            .more-comment.cursor-pointer{"data-comment-target": "button", "data-controller": "comment", "data-action": "click->comment#show_options"}
               %i.w-4.h-4{"data-feather" => "more-vertical"}
               = render partial: "comments/dropdown", locals: {comment: comment, story: comment.story}
           .text-xs.text-fade
@@ -14,5 +14,13 @@
       = render partial: "comments/likes", locals: {story: comment.story, comment: comment}
 
     %div
-      = comment.body
+      .edit-input.flex.items-center.gap-2.hidden
+        = text_field_tag "comment", nil, class: "border shadow-md rounded-md", style: "border-color: rgb(229, 231, 235)"
+        .p-2.cancel-comment.bg-secondary.cursor-pointer.hover:bg-primary.text-white.rounded-sm{"data-comment-target": "cancel", "data-controller": "comment", "data-action": "click->comment#cancel_update"}
+          Cancel
+        .p-2.update-comment.bg-secondary.cursor-pointer.hover:bg-primary.text-white.rounded-sm{"data-comment-target": "update", "data-controller": "comment", "data-action": "click->comment#update_comment"}
+          = link_to story_comment_path(story_id: comment.story.id, id: comment.id), data: {turbo_method: :put} do
+            Update
+      .comment-display
+        = comment.body
   .mx-auto.border-b.mx-auto
