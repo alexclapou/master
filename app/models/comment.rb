@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :story
-  has_many :likes, as: :record
+  has_many :likes, as: :record, dependent: :destroy
 
   def liked_by?(user)
     likes.where(user:).any?

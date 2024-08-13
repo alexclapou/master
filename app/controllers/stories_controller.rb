@@ -18,6 +18,8 @@ class StoriesController < ApplicationController
   def edit; end
 
   def destroy
+    @story.destroy
+    redirect_to root_path
   end
 
   def show

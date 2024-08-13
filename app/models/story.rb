@@ -5,8 +5,8 @@ class Story < ApplicationRecord
   has_and_belongs_to_many :tags
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(draft: false) }
-  has_many :comments
-  has_many :likes, as: :record
+  has_many :comments, dependent: :destroy
+  has_many :likes, as: :record, dependent: :destroy
 
   def liked_by?(user)
     likes.where(user:).any?
