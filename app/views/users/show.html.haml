@@ -31,6 +31,8 @@
             = "#{current_user.first_name} liked #{like.record.user.first_name} #{like.record_type} #{time_ago_in_words(like.created_at)} ago"
         .text-sm.font-bold
           = will_paginate @likes, param_name: 'likes_page' 
+          - if @likes.empty?
+            No likes
       .comments
         Comments
         - @comments.order(created_at: :desc).each do |comment|
@@ -39,3 +41,5 @@
               = "#{current_user.first_name} commented on #{comment.user.first_name} story <b>(#{comment.story.title})</b> #{time_ago_in_words(comment.created_at)} ago".html_safe
         .text-sm.font-bold
           = will_paginate @comments, param_name: 'comments_page' 
+          - if @comments.empty?
+            No comments
