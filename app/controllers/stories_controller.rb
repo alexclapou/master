@@ -17,6 +17,9 @@ class StoriesController < ApplicationController
 
   def edit; end
 
+  def destroy
+  end
+
   def show
     @comment = Comment.new
   end

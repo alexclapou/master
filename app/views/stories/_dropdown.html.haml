@@ -1,0 +1,8 @@
+.shadow.shadow.rounded.text-sm.border.bg-white.absolute.hidden.more-dds{"data-story-target": "dropdown"}
+  .edit-comment
+    = link_to edit_story_path(story) do
+      .px-4.py-2-5.hover:bg-behindfade.border-b
+        Edit
+    = link_to story_path(story), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the story?"} do
+      .px-4.py-2-5.hover:bg-behindfade
+        Delete

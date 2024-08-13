@@ -1,10 +1,13 @@
 - comments = @story.comments.includes(:user)
 .max-w-contentmax.mx-auto.break-words
-  .flex
-    %div
+  .flex.items-center
+    %div{class:"w-11/12"}
       - if story.tags
         .flex.flex-wrap
           = render story.tags
+    .cursor-pointer{"data-story-target": "button", "data-controller": "story", "data-action": "click->story#show_options"}
+      %i.w-5.h-5{"data-feather" => "more-vertical"}
+      = render partial: "dropdown", locals: {story: story}
   .text-5xl.font-bold.text-secondary
     = story.title
   .border-y.p-3.flex.justify-between.my-6
