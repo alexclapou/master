@@ -1,7 +1,11 @@
 %turbo-frame{ id: "users"}
   - if @users.present?
     - @users.each do |user|
-      = user.name
+      = link_to user_path(user), data: {turbo: false} do
+        .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2
+          = user.name
+    .text-sm.font-semibold
+      = will_paginate @users
   - else
     .font-bold.p-2
       = 'No users found'
