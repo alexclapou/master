@@ -24,6 +24,10 @@
               %div.flex.justify-center.items-center.gap-1
                 %i.w-5.h-5{"data-feather" => "message-circle"}
                 = story.comments.length
+    - if @stories.try(:total_pages)
+      .text-sm.font-bold
+        = will_paginate @stories, param_name: 'stories_page' 
+
     :javascript
       feather.replace()
       document.querySelectorAll("pre").forEach((el) => {

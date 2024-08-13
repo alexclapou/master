@@ -3,18 +3,18 @@ source "https://rubygems.org"
 ruby "3.3.0"
 
 gem "colorize"
+gem "devise"
+gem "faker"
 gem "haml"
+gem "noticed"
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 gem "pg"
 gem "pry"
 gem "rubocop"
 gem "ruby-lsp"
-gem 'noticed'
-gem 'faker'
-
-gem "devise"
-gem "omniauth"
-gem "omniauth-google-oauth2"
-gem "omniauth-rails_csrf_protection"
+gem "will_paginate"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"

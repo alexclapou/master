@@ -6,17 +6,17 @@
         %div
           Stories
         %div
-          = @stories.length
+          = @stories.count
       .flex.flex-col.text-center.p-2
         %div
           Likes
         %div
-          = @likes.size
+          = @likes.count
       .flex.flex-col.text-center.p-2
         %div
           Comments
         %div
-          = @comments.size
+          = @comments.count
   .flex.text-2xl.font-extrabold.mt-8
     %div{class:"w-5/12"}
       Stories
@@ -29,11 +29,13 @@
         - @likes.order(created_at: :desc).each do |like|
           .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-1
             = "#{current_user.first_name} liked #{like.record.user.first_name} #{like.record_type} #{time_ago_in_words(like.created_at)} ago"
+        .text-sm.font-bold
+          = will_paginate @likes, param_name: 'likes_page' 
       .comments
         Comments
         - @comments.order(created_at: :desc).each do |comment|
           = link_to story_path(comment.story) do 
             .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-1
               = "#{current_user.first_name} commented on #{comment.user.first_name} story <b>(#{comment.story.title})</b> #{time_ago_in_words(comment.created_at)} ago".html_safe
-
-
+        .text-sm.font-bold
+          = will_paginate @comments, param_name: 'comments_page' 
