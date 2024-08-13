@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
   def edit; end
 
   def destroy
+    flash.notice = "Story successfully deleted"
     @story.destroy
     redirect_to root_path
   end
