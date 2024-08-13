@@ -27,6 +27,8 @@ class StoriesController < ApplicationController
   end
 
   def update
+    redirect_to story_path(@story) and return if request_format == :turbo_stream
+
     @story.update(story_params)
     render json: :success
   end
