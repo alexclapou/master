@@ -1,4 +1,5 @@
-- if flash.present?
-  - flash.each do |type, msg|
-    .max-w-full.mx-auto.w-full.font-light.text-center.bg-behindfade.sticky.top-0.z-50
-      = msg
+#flash{"data-flash-target": "message", "data-controller": "flash"}
+  - if flash.present?
+    - flash.each do |type, msg|
+      .max-w-full.mx-auto.w-full.font-light.text-center.bg-secondary.sticky.top-0.z-50.text-white
+        = msg

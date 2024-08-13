@@ -1,17 +1,17 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["message"]
+  static targets = ["message"];
 
   connect() {
-    this.timeout = setTimeout(this.closeFlash, 2500)
+    this.timeout = setTimeout(this.closeFlash, 2500);
   }
 
   disconnect() {
-    clearTimeout(this.timeout)
+    clearTimeout(this.timeout);
   }
 
   closeFlash = () => {
-    this.messageTarget.remove()
-  }
+    this.messageTarget.classList.add("hidden");
+  };
 }

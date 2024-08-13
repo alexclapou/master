@@ -5,14 +5,17 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :comments, through: :story
 
   def create
+    flash.now[:notice] = "New Comment Created"
     @comment = @story.comments.create(comment_params)
   end
 
   def destroy
+    flash.now[:notice] = "Comment Deleted"
     @comment.destroy
   end
 
   def update
+    flash.now[:notice] = "Comment Updated"
     @comment.update(body: params[:body])
   end
 
