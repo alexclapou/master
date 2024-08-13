@@ -1,0 +1,39 @@
+.w-full
+  .text-3xl.font-black.text-secondary
+    = @user.name
+    .stats.flex.gap-8.text-sm.font-bold
+      .flex.flex-col.text-center.p-2
+        %div
+          Stories
+        %div
+          = @stories.length
+      .flex.flex-col.text-center.p-2
+        %div
+          Likes
+        %div
+          = @likes.size
+      .flex.flex-col.text-center.p-2
+        %div
+          Comments
+        %div
+          = @comments.size
+  .flex.text-2xl.font-extrabold.mt-8
+    %div{class:"w-5/12"}
+      Stories
+      .font-normal.mt-4
+        = render partial: "stories/list_view"
+    %div{class:"w-2/12"}
+    %div.p-2{class:"w-5/12"}
+      .likes
+        Likes
+        - @likes.order(created_at: :desc).each do |like|
+          .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-1
+            = "#{current_user.first_name} liked #{like.record.user.first_name} #{like.record_type} #{time_ago_in_words(like.created_at)} ago"
+      .comments
+        Comments
+        - @comments.order(created_at: :desc).each do |comment|
+          = link_to story_path(comment.story) do 
+            .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-1
+              = "#{current_user.first_name} commented on #{comment.user.first_name} story <b>(#{comment.story.title})</b> #{time_ago_in_words(comment.created_at)} ago".html_safe
+
+

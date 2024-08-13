@@ -13,6 +13,8 @@ class Ability
     cannot :manage, Comment
     can :manage, Comment
 
+    can :read, User
+
     #   can :read, :all
     #   return unless user.admin?
     #   can :manage, :all

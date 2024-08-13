@@ -5,7 +5,7 @@
         = current_user.name
       .text-fade.text-xs.font-light
         = current_user.email
-    = link_to root_path do
+    = link_to user_path(current_user) do
       .py-2.px-4-5.rounded.m-px.text-primary.text-xs.flex.items-center.justify-center.border.border-primary.hover:bg-behindfade
         View Profile
   .hidden.md:block

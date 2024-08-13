@@ -1,7 +1,8 @@
 %turbo-frame{ id: "stories"}
   - if @stories.present?
     - @stories.each do |story|
-      = link_to story_path(story), data: { turbo: false } do
+      - link = story.draft? ? edit_story_path(story) : story_path(story)
+      = link_to link, data: { turbo: false } do
         .border-b.pb-4.mb-4
           .flex.gap-2.mb.text-xs.items-center
             .bg-behindfade.rounded-full.w-7.h-7.items-center.justify-center.flex.text-sm.font-normal.cursor-pointer{"data-account-target": "button", "data-action": "click@window->account#close_dropdown keydown.esc->account#close_dropdown click->account#toggle_dropdown", "tabindex": "0"}
