@@ -1,16 +1,4 @@
--# = provide(:title, 'First Page')
-
 .w-full
   - Story.published.with_all_rich_text.includes(:tags).each do |story|
     = link_to story_path(story) do
       = render story
-  %div
-    '------------------------------------------------------------------------------------------------------------------------'
-  %span.text-secondary
-    asdaad
-  %div.text-primary
-    asdaad
-  %div.text-fade
-    asdaad
-  %div.text-behindfade
-    asdaad

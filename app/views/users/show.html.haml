@@ -27,8 +27,20 @@
       .likes
         Likes
         - @likes.order(created_at: :desc).each do |like|
-          .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-1
-            = "#{current_user.first_name} liked #{like.record.user.first_name} #{like.record_type} #{time_ago_in_words(like.created_at)} ago"
+          - if like.record_type == "Story"
+            - display = like.record.title
+            - link = story_path(like.record)
+          - else
+            - display = like.record.body
+            - link = story_path(like.record.story, jump_to: like.record.id)
+          = link_to link do
+            .p-2.bg-behindfade.my-2.rounded-md
+              .like.text-sm.flex.font-bold.items-center.gap-4
+                = "#{current_user.first_name} liked a #{like.record_type.downcase}"
+                .font-medium.text-xxs
+                  = " #{time_ago_in_words(like.created_at)} ago"
+              .text-sm.text-fade.font-normal
+                = display
         .text-sm.font-bold
           = will_paginate @likes, param_name: 'likes_page' 
           - if @likes.empty?
@@ -36,9 +48,12 @@
       .comments
         Comments
         - @comments.order(created_at: :desc).each do |comment|
-          = link_to story_path(comment.story) do 
-            .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-1
+          = link_to story_path(comment.story, jump_to: comment.id) do 
+            .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2
               = "#{current_user.first_name} commented on #{comment.user.first_name} story <b>(#{comment.story.title})</b> #{time_ago_in_words(comment.created_at)} ago".html_safe
+              .text-sm.text-fade.font-normal
+                = comment.body
+
         .text-sm.font-bold
           = will_paginate @comments, param_name: 'comments_page' 
           - if @comments.empty?

@@ -5,6 +5,30 @@ export default class extends Controller {
 
   connect() {
     document.addEventListener("click", this.checkClickOutside.bind(this));
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const commentId = urlParams.get("jump_to");
+    if (!commentId) return;
+
+    const id = `comment_comment_${commentId}`;
+    // Wait for the DOM to be fully loaded and stable before scrolling
+    setTimeout(() => {
+      const comment = document.getElementById(id);
+      if (comment) {
+        console.log(comment);
+
+        // Apply highlight class and scroll into view
+        comment.classList.add("highlighted-comment");
+        comment.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        // Remove the highlight class after 2 seconds
+        setTimeout(() => {
+          comment.classList.remove("highlighted-comment");
+        }, 2000);
+      } else {
+        console.error(`Element with ID ${id} not found`);
+      }
+    }, 0); // Delay of 0 ms to ensure execution after other synchronous tasks
   }
 
   checkClickOutside(event) {

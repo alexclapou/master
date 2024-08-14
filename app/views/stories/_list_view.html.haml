@@ -25,7 +25,7 @@
                 %i.w-5.h-5{"data-feather" => "message-circle"}
                 = story.comments.length
     - if @stories.try(:total_pages)
-      .text-sm.font-bold
+      .text-sm.font-bold.mb-12
         = will_paginate @stories, param_name: 'stories_page' 
 
     :javascript

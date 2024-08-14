@@ -6,6 +6,7 @@ export default class extends Controller {
   connect() {
     document.addEventListener("click", this.checkClickOutside.bind(this));
   }
+  disconnect() {}
 
   clear_input() {
     this.inputTarget.value = "";

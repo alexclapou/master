@@ -10,6 +10,7 @@ module.exports = {
       },
       fontSize: {
         "4-5xl": "40px",
+        xxs: "0.65rem",
       },
       height: {
         19: "73px",
