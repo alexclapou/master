@@ -31,7 +31,7 @@
             - display = like.record.title
             - link = story_path(like.record)
           - else
-            - display = like.record.body
+            - display = like.record&.body
             - link = story_path(like.record.story, jump_to: like.record.id)
           = link_to link do
             .p-2.bg-behindfade.my-2.rounded-md
