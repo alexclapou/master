@@ -36,7 +36,7 @@
           = link_to link do
             .p-2.bg-behindfade.my-2.rounded-md
               .like.text-sm.flex.font-bold.items-center.gap-4
-                = "#{current_user.first_name} liked a #{like.record_type.downcase}"
+                = "#{@user.first_name} liked a #{like.record_type.downcase}"
                 .font-medium.text-xxs
                   = " #{time_ago_in_words(like.created_at)} ago"
               .text-sm.text-fade.font-normal
@@ -50,7 +50,7 @@
         - @comments.order(created_at: :desc).each do |comment|
           = link_to story_path(comment.story, jump_to: comment.id) do 
             .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2
-              = "#{current_user.first_name} commented on #{comment.user.first_name} story <b>(#{comment.story.title})</b> #{time_ago_in_words(comment.created_at)} ago".html_safe
+              = "#{@user.first_name} commented on #{comment.user.first_name} story <b>(#{comment.story.title})</b> #{time_ago_in_words(comment.created_at)} ago".html_safe
               .text-sm.text-fade.font-normal
                 = comment.body
 

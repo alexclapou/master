@@ -2,15 +2,16 @@
   .block.text-sm.font-medium.text-gray-700.p-3
     .flex.gap-2.justify-between
       .flex.gap-2.mb-2
-        = render partial: "users/initials_bubble", locals: {user: comment.user}
-        %div
-          %div.flex.justify-center.items-center.gap-2
-            = comment.user.name
-            .more-comment.cursor-pointer{"data-comment-target": "button", "data-controller": "comment", "data-action": "click->comment#show_options"}
-              %i.w-4.h-4{"data-feather" => "more-vertical"}
-              = render partial: "comments/dropdown", locals: {comment: comment, story: comment.story}
-          .text-xs.text-fade
-            = "#{time_ago_in_words(comment.created_at)} ago"
+        = link_to user_path(comment.user) do
+          = render partial: "users/initials_bubble", locals: {user: comment.user}
+          %div
+            %div.flex.justify-center.items-center.gap-2
+              = comment.user.name
+              .more-comment.cursor-pointer{"data-comment-target": "button", "data-controller": "comment", "data-action": "click->comment#show_options"}
+                %i.w-4.h-4{"data-feather" => "more-vertical"}
+                = render partial: "comments/dropdown", locals: {comment: comment, story: comment.story}
+            .text-xs.text-fade
+              = "#{time_ago_in_words(comment.created_at)} ago"
       = render partial: "comments/likes", locals: {story: comment.story, comment: comment}
 
     %div
