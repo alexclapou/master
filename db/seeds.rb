@@ -5,7 +5,7 @@ Tag.create(tags.map { |tag| { name: tag } })
 
 puts "creating users...".colorize(:light_green)
 users = []
-users << { email: "alex@yahoo.com", password: "parola", first_name: "Alex", last_name: "Clapou" }
+users << { email: "alex@yahoo.com", password: "parola", first_name: "Custom", last_name: "User" }
 50.times do |idx|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name

@@ -1,4 +1,5 @@
-.w-full
-  - Story.published.with_all_rich_text.includes(:tags).each do |story|
-    = link_to story_path(story) do
-      = render story
+- @stories =  Story.published.with_all_rich_text.includes(:tags).paginate(page: params[:stories_page], per_page: 5)
+.w-full.max-w-contentmax.mx-auto.break-words
+  .font-black.text-xl.mt-4.mb-8
+    Latest stories
+  = render partial: "stories/index_story"
