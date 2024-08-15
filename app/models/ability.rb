@@ -11,7 +11,7 @@ class Ability
     cannot :read, Story, user:, draft: true
 
     cannot :manage, Comment
-    can :manage, Comment
+    can(:manage, Comment, user:)
 
     can :read, User
 
