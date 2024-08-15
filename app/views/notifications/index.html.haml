@@ -1,5 +1,5 @@
 .w-full.max-w-contentmax.mx-auto.break-words
-  - @notifications.order(created_at: :desc).includes(item: [:story, :comment]).each do |notification|
+  - @notifications.each do |notification|
     - if !notification.viewed
       - viewed = "bg-primary text-white"
     - if notification.action == "comment"
@@ -15,5 +15,8 @@
     = link_to link do
       .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2{class: viewed}
         = display
+
+  .text-sm.font-bold.mb-12
+    = will_paginate @notifications
 - @notifications.update_all(viewed: true)
 - @notifications.reload
