@@ -1,4 +1,17 @@
-- @notifications.each do |notification|
-  .p-2.bg-fade
-    - display = notification.action == "comment" ? "Someone commented on <b>#{notification.item.story.title}</b>".html_safe : ""
-    = display
+.w-full.max-w-contentmax.mx-auto.break-words
+  - @notifications.order(created_at: :desc).each do |notification|
+    - if notification.action == "comment"
+      - display = "Someone commented on a story"
+      - link = story_path(notification.item.story)
+      - if !notification.viewed
+        - viewed = "bg-primary text-white"
+    - else
+      - if notification.item_type == "Comment"
+        - display = "Someone liked your comment"
+      - else
+        - display = "Someone liked your story"
+    = link_to link do
+      .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2{class: viewed}
+        = display
+- @notifications.update_all(viewed: true)
+- @notifications.reload

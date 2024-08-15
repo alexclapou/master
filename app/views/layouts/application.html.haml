@@ -2,6 +2,8 @@
 %html
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    -# this may be wrong!
+    %meta{content: "no-cache", name: "turbo-cache-control"}/ 
     %title
       - if yield(:title).present?
         #{yield(:title)} - Pe Caiet
