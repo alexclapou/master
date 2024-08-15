@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ["dropdown", "button"];
 
   connect() {
+    console.log("connect?");
     document.addEventListener("click", this.checkClickOutside.bind(this));
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -14,6 +15,7 @@ export default class extends Controller {
     // Wait for the DOM to be fully loaded and stable before scrolling
     setTimeout(() => {
       const comment = document.getElementById(id);
+      console.log(comment);
       if (comment) {
         console.log(comment);
 

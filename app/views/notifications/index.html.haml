@@ -1,15 +1,17 @@
 .w-full.max-w-contentmax.mx-auto.break-words
-  - @notifications.order(created_at: :desc).each do |notification|
+  - @notifications.order(created_at: :desc).includes(item: [:story, :comment]).each do |notification|
+    - if !notification.viewed
+      - viewed = "bg-primary text-white"
     - if notification.action == "comment"
       - display = "Someone commented on a story"
-      - link = story_path(notification.item.story)
-      - if !notification.viewed
-        - viewed = "bg-primary text-white"
+      - link = story_path(notification.item.story, jump_to: notification.item.id)
     - else
-      - if notification.item_type == "Comment"
+      - if notification.item.record_type == "Comment"
         - display = "Someone liked your comment"
+        - link = story_path(notification.item.record.story, jump_to: notification.item.record.id)
       - else
         - display = "Someone liked your story"
+        - link = story_path(notification.item.record)
     = link_to link do
       .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2{class: viewed}
         = display

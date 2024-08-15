@@ -2,14 +2,15 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :story
   has_many :likes, as: :record, dependent: :destroy
-  has_many :notifications, as: :item, dependent: :destroy
+  include Notificable
 
   def liked_by?(user)
     likes.where(user:).any?
   end
 
   def like(user)
-    likes.where(user:).first_or_create
+    like = likes.where(user:).first_or_create
+    like.notify_users([self.user], "like")
   end
 
   def unlike(user)

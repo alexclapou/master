@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
   def create
     flash.now[:notice] = "New Comment Created"
     @comment = @story.comments.create(comment_params)
-    notify_users(@comment)
+    users = @comment.story.comments.includes(:user).map(&:user).uniq - [@comment.user]
+    @comment.notify_users(users, "comment")
   end
 
   def destroy
@@ -21,14 +22,6 @@ class CommentsController < ApplicationController
   end
 
   private
-
-  def notify_users(comment)
-    users_to_notify = comment.story.comments.includes(:user).map(&:user).uniq - [comment.user]
-    users_to_notify.each do |user|
-      NotificationChannel.broadcast_to(user, action: "receive")
-      Notification.create(item: comment, user:, action: "comment")
-    end
-  end
 
   def comment_params
     params.require(:comment).permit(:body).with_defaults(story_id: story_params, user_id: current_user.id)
