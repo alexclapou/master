@@ -1,0 +1,20 @@
+= form_with model: @user, local: true do |f|
+  .flex.gap-16.text-md.my-8
+    %div
+      .font-bold
+        = f.label :first_name
+      .my-2
+        = f.text_field :first_name, class:"rounded text-sm"
+
+    .field
+      .font-bold
+        = f.label :last_name
+      .my-2
+        = f.text_field :last_name, class:"rounded text-sm"
+
+  = f.submit "Save", class: "mt-8 py-2 px-4 rounded bg-secondary cursor-pointer hover:bg-primary text-white w-28"
+
+  = link_to user_path(current_user), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the account?"} do
+    .bg-red-600.py-2-5.px-4-5.rounded.m-px.text-white.text-sm.hover:bg-red-700.w-36.cursor-pointer.mt-12
+      Delete Account
+

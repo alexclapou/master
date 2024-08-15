@@ -13,7 +13,9 @@ class Ability
     cannot :manage, Comment
     can(:manage, Comment, user:)
 
+    cannot :manage, User
     can :read, User
+    can :manage, User, id: user.id
 
     #   can :read, :all
     #   return unless user.admin?
