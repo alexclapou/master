@@ -17,6 +17,8 @@ class Ability
     can :read, User
     can :manage, User, id: user.id
 
+    can :manage, Notification
+
     #   can :read, :all
     #   return unless user.admin?
     #   can :manage, :all

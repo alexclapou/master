@@ -30,3 +30,4 @@ addEventListener("trix-initialize", function (event) {
     }
   }
 });
+import "channels"

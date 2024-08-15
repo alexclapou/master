@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resource :like, module: :stories
   end
 
+  resources :notifications, only: ["index"]
+
   get "search(/:q)", to: "search#index", as: :search
   get "search_stories(/:q)", to: "search#search_stories", as: :search_stories
   get "search_users(/:q)", to: "search#search_users", as: :search_users
