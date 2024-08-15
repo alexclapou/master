@@ -50,7 +50,11 @@
         - @comments.order(created_at: :desc).each do |comment|
           = link_to story_path(comment.story, jump_to: comment.id) do 
             .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2
-              = "#{@user.first_name} commented on #{comment.user.first_name} story <b>(#{comment.story.title})</b> #{time_ago_in_words(comment.created_at)} ago".html_safe
+              .flex.items-center.gap-4
+                %div
+                  = "#{@user.first_name} commented on a story <b>(#{comment.story.title})</b>".html_safe
+                .font-medium.text-xxs
+                  = " #{time_ago_in_words(comment.created_at)} ago"
               .text-sm.text-fade.font-normal
                 = comment.body
 
