@@ -1,3 +1,4 @@
 - @notifications.each do |notification|
   .p-2.bg-fade
-    = notification.item_type
+    - display = notification.action == "comment" ? "Someone commented on <b>#{notification.item.story.title}</b>".html_safe : ""
+    = display

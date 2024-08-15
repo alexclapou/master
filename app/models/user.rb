@@ -2,6 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
+  attr_accessor :skip_password_validation
 
   has_many :stories, dependent: :destroy # no need of (after/before)_destroy callbacks
   has_many :comments, dependent: :destroy
@@ -20,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    return false if provider.present? && uid.present?
+    return false if (provider.present? && uid.present?) || skip_password_validation
 
     true
   end

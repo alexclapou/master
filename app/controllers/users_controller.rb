@@ -11,7 +11,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
+    @user.first_name = params[:user][:first_name]
+    @user.last_name = params[:user][:last_name]
+    @user.skip_password_validation = true
+    @user.save
     flash[:notice] = "Account updated"
     redirect_to user_path(@user) and return
   end
@@ -20,11 +23,5 @@ class UsersController < ApplicationController
     flash[:notice] = "Account deleted"
     @user.destroy
     redirect_to root_path
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:first_name, :last_name)
   end
 end

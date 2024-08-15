@@ -12,6 +12,7 @@
       .my-2
         = f.text_field :last_name, class:"rounded text-sm"
 
+
   = f.submit "Save", class: "mt-8 py-2 px-4 rounded bg-secondary cursor-pointer hover:bg-primary text-white w-28"
 
   = link_to user_path(current_user), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the account?"} do

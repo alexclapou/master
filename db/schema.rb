@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_140016) do
     t.bigint "item_id", null: false
     t.bigint "user_id", null: false
     t.boolean "viewed"
+    t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_type", "item_id"], name: "index_notifications_on_item"

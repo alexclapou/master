@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     users_to_notify = comment.story.comments.includes(:user).map(&:user).uniq - [comment.user]
     users_to_notify.each do |user|
       NotificationChannel.broadcast_to(user, action: "receive")
-      Notification.create(item: comment, user:)
+      Notification.create(item: comment, user:, action: "comment")
     end
   end
 
