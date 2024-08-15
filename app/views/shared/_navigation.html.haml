@@ -20,7 +20,7 @@
             .rounded-full.overflow-hidden.text-secondary
               = link_to notifications_path do 
                 %i.w-9.h-9.p-2.hover:bg-behindfade{"data-feather" => "bell"}
-                #notification.absolute.top-6.ml-5.w-2.h-2.bg-red-600.rounded-full.hidden
+                #notification.absolute.top-6.ml-5.w-2.h-2.bg-red-600.rounded-full{class: current_user.notifications.pluck(:viewed).any?(false) ? "" : "hidden"}
         - else
           .mr-2.sm:mr-5.hover:text-primary
             = link_to 'Join', new_user_registration_path

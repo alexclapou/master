@@ -8,7 +8,7 @@ module Notificable
   def notify_users(users, action)
     users.each do |user|
       NotificationChannel.broadcast_to(user, action: "receive")
-      Notification.create(item: self, user:, action:)
+      Notification.create(item: self, user:, action:, viewed: false)
     end
   end
 end
