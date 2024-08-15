@@ -11,9 +11,14 @@
         = render partial: "dropdown", locals: {story: story}
   .text-5xl.font-bold.text-secondary
     = story.title
-  .border-y.p-3.flex.justify-between.my-6
+  .border-y.p-3.flex.justify-between.my-6.items-center
     %div
       .font-medium.text-sm
+        = link_to user_path(story.user) do 
+          .flex.items-center.gap-1
+            = render partial: "users/initials_bubble", locals: {user: story.user}
+            .text-xs
+              = story.user.name
         = story.display_date
     .flex.gap-6.select-none.text-sm
       = render partial: "likes", locals: { story: @story }

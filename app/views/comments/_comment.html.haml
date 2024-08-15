@@ -4,14 +4,15 @@
       .flex.gap-2.mb-2
         = link_to user_path(comment.user) do
           = render partial: "users/initials_bubble", locals: {user: comment.user}
-          %div
-            .flex.items-center.gap-2
+        %div
+          .flex.items-center.gap-2
+            = link_to user_path(comment.user) do
               = comment.user.name
-              .more-comment.cursor-pointer{"data-comment-target": "button", "data-controller": "comment", "data-action": "click->comment#show_options", class: can?(:manage, comment) ? "" : "hidden"}
-                %i.w-4.h-4{"data-feather" => "more-vertical"}
-                = render partial: "comments/dropdown", locals: {comment: comment, story: comment.story}
-            .text-xs.text-fade
-              = "#{time_ago_in_words(comment.created_at)} ago"
+            .more-comment.cursor-pointer{"data-comment-target": "button", "data-controller": "comment", "data-action": "click->comment#show_options", class: can?(:manage, comment) ? "" : "hidden"}
+              %i.w-4.h-4{"data-feather" => "more-vertical"}
+              = render partial: "comments/dropdown", locals: {comment: comment, story: comment.story}
+          .text-xs.text-fade
+            = "#{time_ago_in_words(comment.created_at)} ago"
       = render partial: "comments/likes", locals: {story: comment.story, comment: comment}
 
     %div

@@ -4,14 +4,18 @@
       - link = story.draft? ? edit_story_path(story) : story_path(story)
       = link_to link, data: { turbo: false } do
         .border-b.pb-4.mb-4
-          .flex.gap-2.mb.text-xs.items-center
-            .bg-behindfade.rounded-full.w-7.h-7.items-center.justify-center.flex.text-sm.font-normal.cursor-pointer{"data-account-target": "button", "data-action": "click@window->account#close_dropdown keydown.esc->account#close_dropdown click->account#toggle_dropdown", "tabindex": "0"}
-              - initials = story.user.name_initials
-              %span
-                = initials
-            %div
+          .flex.gap-2.mb.text-xs.items-center.justify-between
+            .flex.gap-2.mb.text-xs.items-center
+              .bg-behindfade.rounded-full.w-7.h-7.items-center.justify-center.flex.text-sm.font-normal.cursor-pointer{"data-account-target": "button", "data-action": "click@window->account#close_dropdown keydown.esc->account#close_dropdown click->account#toggle_dropdown", "tabindex": "0"}
+                - initials = story.user.name_initials
+                %span
+                  = initials
               %div
-                = story.user.name
+                %div
+                  = story.user.name
+            - if story.draft?
+              .font-bold.italic
+                Draft
           .text-3xl.font-bold.text-secondary.mb-1
             = story.title
           .text-sm.text-fade.line-clamp-3{class:"w-8/12"}
