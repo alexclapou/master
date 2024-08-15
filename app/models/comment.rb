@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
 
   def like(user)
     like = likes.where(user:).first_or_create
-    like.notify_users([self.user], "like")
+    like.notify_users([self.user] - [user], "like")
   end
 
   def unlike(user)
