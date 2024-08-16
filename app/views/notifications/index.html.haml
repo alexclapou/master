@@ -1,28 +1,30 @@
 .w-full.max-w-contentmax.mx-auto.break-words
-  - @notifications.each do |notification|
-    - if !notification.viewed
-      - viewed = "bg-primary text-white"
-    - if notification.action == "comment"
-      - display = "Someone commented on a story"
-      - link = story_path(notification.item.story, jump_to: notification.item.id)
-      - additional = notification.item.body
-    - else
-      - if notification.item.record_type == "Comment"
-        - display = "Someone liked your comment"
-        - link = story_path(notification.item.record.story, jump_to: notification.item.record.id)
-        - additional = notification.item.record.body
+  - if @notifications.present?
+    - @notifications.each do |notification|
+      - if !notification.viewed
+        - viewed = "bg-primary text-white"
+      - if notification.action == "comment"
+        - display = "Someone commented on a story"
+        - link = story_path(notification.item.story, jump_to: notification.item.id)
+        - additional = notification.item.body
       - else
-        - display = "Someone liked your story <b>#{notification.item.record.title}</b>".html_safe
-        - link = story_path(notification.item.record)
-    = link_to link do
-      .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2{class: viewed}
-        = display
-        .text-sm.text-fade.font-normal
-          = additional
+        - if notification.item.record_type == "Comment"
+          - display = "Someone liked your comment"
+          - link = story_path(notification.item.record.story, jump_to: notification.item.record.id)
+          - additional = notification.item.record.body
+        - else
+          - display = "Someone liked your story <b>#{notification.item.record.title}</b>".html_safe
+          - link = story_path(notification.item.record)
+      = link_to link do
+        .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2{class: viewed}
+          = display
+          .text-sm.text-fade.font-normal
+            = additional
 
-      
-
-  .text-sm.font-bold.mb-12
-    = will_paginate @notifications
+    .text-sm.font-bold.mb-12
+      = will_paginate @notifications
+  - else
+    .text-sm.font-bold.mb-12
+      No Notifications yet
 - @notifications.update_all(viewed: true)
 - @notifications.reload
