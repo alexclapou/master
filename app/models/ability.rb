@@ -15,7 +15,7 @@ class Ability
 
     cannot :manage, User
     can :read, User
-    can :manage, User, id: user.id
+    can :manage, User, id: user&.id
 
     can :manage, Notification
 

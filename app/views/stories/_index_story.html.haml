@@ -30,7 +30,7 @@
                   %i.w-5.h-5{"data-feather" => "message-circle"}
                   = story.comments.length
           %div
-            - img = story.content.embeds.find{|embeds| embeds.image?}.variant(resize_to_limit: [200, 200])
+            - img = story.content.embeds.find{|embeds| embeds.image?}&.variant(resize_to_limit: [200, 200])
             - if img
               = image_tag img
   - if @stories.try(:total_pages)
