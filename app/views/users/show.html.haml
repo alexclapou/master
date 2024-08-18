@@ -52,7 +52,7 @@
             .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2
               .flex.items-center.gap-4
                 %div
-                  = "#{@user.first_name} commented on a story <b>(#{comment.story.title})</b>".html_safe
+                  = "#{@user.first_name} commented on a story <b>(#{h(comment.story.title)})</b>".html_safe
                 .font-medium.text-xxs
                   = " #{time_ago_in_words(comment.created_at)} ago"
               .text-sm.text-fade.font-normal
