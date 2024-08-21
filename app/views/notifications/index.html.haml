@@ -6,14 +6,14 @@
       - if notification.action == "comment"
         - display = "Someone commented on a story"
         - link = story_path(notification.item.story, jump_to: notification.item.id)
-        - additional = notification.item.body
+        - additional = h(notification.item.body)
       - else
         - if notification.item.record_type == "Comment"
           - display = "Someone liked your comment"
           - link = story_path(notification.item.record.story, jump_to: notification.item.record.id)
-          - additional = notification.item.record.body
+          - additional = h(notification.item.record.body)
         - else
-          - display = "Someone liked your story <b>#{notification.item.record.title}</b>".html_safe
+          - display = "Someone liked your story <b>#{h(notification.item.record.title)}</b>".html_safe
           - link = story_path(notification.item.record)
       = link_to link do
         .like.font-medium.text-sm.p-2.bg-behindfade.rounded-md.my-2{class: viewed}
