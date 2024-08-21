@@ -39,8 +39,12 @@ class StoriesController < ApplicationController
   end
 
   def publish
-    flash.notice = "Story successfully published"
-    @story.update(draft: false)
+    if @story.title.blank? || @story.content.blank?
+      flash.now.alert = "Cannot publish story with blank title and content"
+    else
+      @story.update(draft: false)
+      flash.notice = "Story successfully published"
+    end
   end
 
   private

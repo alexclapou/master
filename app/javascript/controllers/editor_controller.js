@@ -256,19 +256,26 @@ export default class extends Controller {
     const id = window.location.pathname.match(/\d+/g)[0];
     const path = `/stories/${id}/publish`;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    this.try_save();
+
     fetch(path, {
-      method: "put",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken, // Include the CSRF token in the request headers
+        "X-CSRF-Token": csrfToken,
+        Accept: "text/vnd.turbo-stream.html", // Tell the server to return a Turbo Stream response
       },
     })
       .then((response) => {
         if (response.ok) {
-          window.location.href = `/stories/${id}`;
+          return response.text(); // Get the response as text
         } else {
           console.error("Failed to publish the story");
+        }
+      })
+      .then((html) => {
+        if (html) {
+          if (html.includes("success")) window.location.href = `/stories/${id}`;
+          else Turbo.renderStreamMessage(html); // Render the Turbo Stream response
         }
       })
       .catch((error) => console.error("Error:", error));
