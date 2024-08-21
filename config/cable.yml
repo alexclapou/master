@@ -7,5 +7,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: redis://:pc1912d1ddb848405a95149892687c2151a07e76648009b4422606a2fc36c8d3f@ec2-46-137-46-93.eu-west-1.compute.amazonaws.com:28579
   channel_prefix: pecaiet_production
