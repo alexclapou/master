@@ -4,7 +4,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[google_oauth2]
   attr_accessor :skip_password_validation
 
-  has_many :stories, dependent: :destroy # no need of (after/before)_destroy callbacks
+  has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :notifications
