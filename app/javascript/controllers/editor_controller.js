@@ -213,12 +213,50 @@ export default class extends Controller {
     });
   }
 
+  try_save() {
+    this.enable_preview();
+    let new_story = window.location.pathname == "/stories/new";
+    const story = this.story_data();
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"));
+
+    let method;
+    if (new_story) {
+      method = "POST";
+    } else {
+      method = "PUT";
+    }
+
+    const feedback_span = document.getElementById("save_feedback");
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    feedback_span.innerHTML = "Saving...";
+    fetch(path, {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken, // Include the CSRF token in the request headers
+      },
+      body: JSON.stringify({ story }),
+    })
+      .then((response) => {
+        feedback_span.innerHTML = "Saved";
+        return response.json();
+      })
+      .then((data) => {
+        if (new_story) {
+          window.history.pushState({}, "", `/stories/${data}/edit`);
+          new_story = false;
+        }
+      });
+  }
+
   publish() {
     if (window.location.pathname == "/stories/new") return;
 
     const id = window.location.pathname.match(/\d+/g)[0];
     const path = `/stories/${id}/publish`;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.try_save();
     fetch(path, {
       method: "put",
       headers: {
