@@ -66,9 +66,11 @@ export default class extends Controller {
     const closestComm = this.updateTarget.closest(".comm").querySelector(".comment-display");
     const closestInput = closestComment.querySelector("input");
     const newComment = closestInput.value;
-    const closestLink = closestComment.querySelector("a");
-    closestLink.href = closestLink.href + `?body=${newComment}`;
-    closestComm.innerHTML = newComment;
+    if (newComment != "") {
+      const closestLink = closestComment.querySelector("a");
+      closestLink.href = closestLink.href + `?body=${newComment}`;
+      closestComm.innerHTML = newComment;
+    }
     const comment_inputs = document.getElementsByClassName("edit-input");
     const comment_elements = document.getElementsByClassName("comment-display");
 

@@ -5,10 +5,14 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :comments, through: :story
 
   def create
-    flash.now[:notice] = "New Comment Created"
     @comment = @story.comments.create(comment_params)
-    users = @comment.story.comments.includes(:user).map(&:user).uniq - [@comment.user]
-    @comment.notify_users(users, "comment")
+    if @comment.valid?
+      flash.now[:notice] = "New Comment Created"
+      users = @comment.story.comments.includes(:user).map(&:user).uniq - [@comment.user]
+      @comment.notify_users(users, "comment")
+    else
+      flash.now[:alert] = "Can't leave an empty comment"
+    end
   end
 
   def destroy
@@ -17,8 +21,12 @@ class CommentsController < ApplicationController
   end
 
   def update
-    flash.now[:notice] = "Comment Updated"
     @comment.update(body: params[:body])
+    if @comment.valid?
+      flash.now[:notice] = "Comment Updated"
+    else
+      flash.now[:alert] = "Cannot leave the comment empty"
+    end
   end
 
   private
