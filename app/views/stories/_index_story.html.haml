@@ -28,7 +28,7 @@
                   = story.likes_count
                 %div.flex.justify-center.items-center.gap-1
                   %i.w-5.h-5{"data-feather" => "message-circle"}
-                  = story.comments.length
+                  = story.comments_count
           %div
             - img = story.content.embeds.find{|embeds| embeds.image?}&.variant(resize_to_limit: [200, 200])
             - if img

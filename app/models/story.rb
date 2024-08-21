@@ -3,24 +3,12 @@ class Story < ApplicationRecord
   has_rich_text :content
   has_one_attached :thumbnail
   has_and_belongs_to_many :tags
-  default_scope { order(created_at: :desc) }
-  scope :published, -> { where(draft: false) }
-  has_many :likes, as: :record, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  def liked_by?(user)
-    likes.where(user:).any?
-  end
+  default_scope { order(created_at: :desc) }
+  scope :published, -> { where(draft: false) }
 
-  def like(user)
-    like = likes.where(user:).first_or_create
-    like.notify_users([self.user] - [user], "like")
-    like
-  end
-
-  def unlike(user)
-    likes.where(user:).destroy_all
-  end
+  include Likeable
 
   def display_date
     created_at.strftime("%B #{created_at.day.ordinalize}, %Y")

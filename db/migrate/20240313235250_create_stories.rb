@@ -5,6 +5,7 @@ class CreateStories < ActiveRecord::Migration[7.1]
       t.boolean :draft, default: true
       t.references :user, null: false, foreign_key: true
       t.integer :likes_count, default: 0
+      t.integer :comments_count, default: 0
 
       t.timestamps
     end

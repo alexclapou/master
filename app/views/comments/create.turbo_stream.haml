@@ -1,5 +1,5 @@
 = turbo_stream.prepend "comments" do
   = render partial: "comments/comment", locals: { comment: @comment }
 
-= turbo_stream.replace(dom_id(@comment.story, :comments), "<div id=#{dom_id(@comment.story, :comments)}>#{@comment.story.comments.size}</div>")
+= turbo_stream.replace(dom_id(@comment.story, :comments), "<div id=#{dom_id(@comment.story, :comments)}>#{@comment.story.comments_count}</div>")
 = turbo_stream.replace("flash", partial: "shared/flash_message")
