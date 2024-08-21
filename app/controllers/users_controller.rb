@@ -7,8 +7,7 @@ class UsersController < ApplicationController
     @comments = @user.comments.paginate(page: params[:comments_page], per_page: 5)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @user.first_name = params[:user][:first_name]

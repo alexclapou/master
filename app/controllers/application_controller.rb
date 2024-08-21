@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :set_user_cookie
 
   def index; end
+
   rescue_from CanCan::AccessDenied do |exception|
     flash.alert = exception.message
     redirect_to root_path
