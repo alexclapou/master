@@ -16,8 +16,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    flash.now[:notice] = "Comment Deleted"
-    @comment.destroy
+    if @comment.destroy
+      flash.now[:notice] = "Comment Deleted"
+    else
+      flash.now[:alert] = "An error occured"
+    end
   end
 
   def update
