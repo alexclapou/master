@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
+    if params[:user][:first_name].strip.empty? || params[:user][:last_name].strip.empty?
+      flash[:alert] = "First and Last Name can't be empty"
+      redirect_to edit_user_path(@user) and return
+    end
     @user.first_name = params[:user][:first_name]
     @user.last_name = params[:user][:last_name]
     @user.skip_password_validation = true

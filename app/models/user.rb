@@ -4,6 +4,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[google_oauth2]
   attr_accessor :skip_password_validation
 
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy

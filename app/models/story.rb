@@ -1,9 +1,9 @@
 class Story < ApplicationRecord
   belongs_to :user
   has_rich_text :content
-  has_one_attached :thumbnail
   has_and_belongs_to_many :tags
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(draft: false) }
