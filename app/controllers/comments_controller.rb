@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment = @story.comments.create(comment_params)
     if @comment.valid?
       flash.now[:notice] = "New Comment Created"
-      users = @comment.story.comments.includes(:user).map(&:user).uniq - [@comment.user]
+      users = (@comment.story.comments.includes(:user).map(&:user).uniq + [@comment.story.user] - [@comment.user]).uniq
       @comment.notify_users(users, "comment")
     else
       flash.now[:alert] = "Can't leave an empty comment"
