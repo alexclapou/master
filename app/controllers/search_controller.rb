@@ -14,7 +14,7 @@ class SearchController < ApplicationController
 
   def search_users
     @search_term = params[:q]
-    @users = User.where("substring(email from 1 for position('@' in email) - 1) ilike ?", "%#{@search_term}%")
+    @users = User.where("first_name ILIKE :search_term OR last_name ILIKE :search_term", search_term: "%#{@search_term}%")
                  .paginate(page: params[:page], per_page: 10)
     render partial: "users/list_view"
   end
