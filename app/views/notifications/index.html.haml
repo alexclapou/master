@@ -2,8 +2,8 @@
 .w-full.max-w-contentmax.mx-auto.break-words
   - if @notifications.present?
     - @notifications.each do |notification|
-      - if !notification.viewed
-        - viewed = "bg-primary text-white"
+      - if notification.viewed && notification.id < 3
+        - viewed = "bg-gray-300"
       - if notification.action == "comment"
         - display = "Someone commented on a story"
         - link = story_path(notification.item.story, jump_to: notification.item.id)
